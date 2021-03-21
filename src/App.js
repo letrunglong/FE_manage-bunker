@@ -11,6 +11,7 @@ import ProductComponent from 'components/products';
 import CustomersComponent from 'components/customers';
 import ImportProduct from 'components/import-prod';
 import ExportProduct from 'components/export-prod';
+import RevenueComponent from 'components/renueve';
 
 const checkLogin = () => {
   if (localStorage.getItem("isLogin"))
@@ -54,19 +55,18 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     />
   );
 };
-const NavBar = () => {
-  return <div className='nav-bar'>
-
-  </div>
-}
+// const NavBar = () => {
+//   return <div className='nav-bar'>
+//   </div>
+// }
 function App() {
   return (
-    <div className="App">
-      <NavBar/>
+    <div className="App" >
+      {/* <NavBar/> */}
       <Router>
         <Route render={({ location, history }) => (
           <React.Fragment>
-            <PublicRoute exact path='/login' component={AuthLogin} />
+            <PublicRoute exact path={ROUTE.SIGN_IN} component={AuthLogin} />
             {/* <PublicRoute exact path={ROUTE.SIGNUP} component={SignUpPage} />
             <PublicRoute exact path={ROUTE.FORGOT} component={Authforgot} /> */}
             <PrivateRoute exact path={ROUTE.DASHBOARD} component={DashBoard} />
@@ -75,6 +75,7 @@ function App() {
             <PrivateRoute exact path={ROUTE.CUSTOMER} component={CustomersComponent} />
             <PrivateRoute exact path={ROUTE.IMPORT_PRODUCTS} component={ImportProduct} />
             <PrivateRoute exact path={ROUTE.EXPORT_PRODUCTS} component={ExportProduct} />
+            <PrivateRoute exact path={ROUTE.REVENUE} component={RevenueComponent} />
           </React.Fragment>
         )}
         />
