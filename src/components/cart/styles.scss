@@ -1,0 +1,93 @@
+@import "assets/css/variables";
+#root{
+    .App{
+        .top-bar{
+            .container{
+                .main{
+                    .ant-layout.private-layout-container{
+                        .ant-layout{
+                            .component.cart{
+                                .class-title{
+                                    display: flex;
+                                    justify-content: space-between;
+                                    .title:nth-child(2){
+                                        font-size: 18px;
+                                        border-radius: 5px;
+                                        cursor: pointer;
+                                        border: 1px solid gray;
+                                        padding: 5px 10px;
+                                        background-color: $bg-button;
+                                        color: white;
+                                        font-weight: normal;
+                                        align-self: center;
+                                        .anticon.anticon-carry-out{
+                                            margin-right: 5px;
+                                        }
+                                }
+                                
+                                }
+                                .search-product{
+                                    display: flex;
+                                    justify-content: space-between;
+                                    .ant-input,.ant-picker.ant-picker-range{
+                                        border-radius: 5px;
+                                    }
+                                    .left{
+                                        display: flex;
+                                        width: 80%;
+                                        justify-content: space-between;
+                                        .mr{
+                                            margin-right: 10px;
+                                        }
+                                        .find-by-code.mr,.sort-by-receipt{
+                                            width: 30%;
+                                        }
+                                        .search-by-date{
+                                            width: 40%;
+                                            .ant-picker.ant-picker-range{
+                                                width: 100%;
+                                            }
+                                        }
+                                        .btn-search{
+                                            width: 10%;
+                                            .ant-btn{
+                                                border-radius: 5px;
+                                            }
+                                            
+                                        }
+                                    }
+                                    .right{
+                                        width: 20%;
+                                        display: flex;
+                                        justify-content: flex-end;
+                                        :first-child{
+                                            border-top-left-radius: 5px;
+                                            border-bottom-left-radius: 5px;
+                                        }
+                                        :last-child{
+                                            border-top-right-radius: 5px;
+                                            border-bottom-right-radius: 5px;
+                                        }
+                                        .ant-btn.sort-time{
+                                            width: 31%;
+                                        }
+                                    }
+                                }
+                                .cart-content{
+                                    margin-top: 30px;
+                                }
+                                .statistical{
+                                    font-size: 14px;
+                                    text-align: left;
+                                    background-color: #D4EAF9;
+                                    padding: 10px;
+                                    border-radius: 5px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

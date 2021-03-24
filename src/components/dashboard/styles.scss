@@ -1,3 +1,4 @@
+@import "assets/css/variables.scss";
 #root{
     .App{
         .top-bar{
@@ -8,14 +9,15 @@
                             .component{
                                 padding: 0 20px;
                                 font-size: 14px;
-                            }
-                            .component.dashboard{
                                 .title{
                                     font-size: 30px;
                                     font-weight: 600;
                                     float: left;
                                     margin-bottom: 30px;
                                 }
+                            }
+                            .component.dashboard{
+                                
                                 .content-top{
                                     width: 100%;
                                     height: 170px;
@@ -73,10 +75,25 @@
                                             padding: 5px 20px;
                                             align-content: center;
                                             font-size: 18px;
-                                            font-weight: 500;
+                                            font-weight: normal;
                                             span{
                                                 cursor: pointer;
                                             }
+                                        }
+                                    }
+                                    .statistical:first-child{
+                                        .bottom{
+                                            color: #90b432;
+                                        }
+                                    }
+                                    .statistical:nth-child(2){
+                                        .bottom{
+                                            color: #2B7CC3;
+                                        }
+                                    }
+                                    .statistical:last-child{
+                                        .bottom{
+                                            color: #CF3739;
                                         }
                                     }
                                 }

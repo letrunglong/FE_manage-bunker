@@ -1,0 +1,58 @@
+#root{
+    .App{
+        .top-bar{
+            .container{
+                .main{
+                    .ant-layout.private-layout-container{
+                        .ant-layout{
+                            .component.products{
+                                .outside{
+                                    display: flex;
+                                    justify-content: space-between;
+                                    .title.btn-add{
+                                        font-size: 18px !important;
+                                        background-color: #2C6DAF;
+                                        align-self: center;
+                                        padding: 5px 10px;
+                                        border-radius: 5px;
+                                        color: white;
+                                        font-weight: 400;
+                                        border: 1px solid gray;
+                                        cursor: pointer;
+                                        span:first-child{
+                                            margin-right: 5px;
+                                        }
+                                    }
+                                }
+                                .search{
+                                    display: flex;
+                                    margin-bottom: 30px;
+                                    .child{
+                                        margin-right: 10px;
+                                        :first-child{
+                                            border-radius: 5px;
+                                        }
+                                    }
+                                    .search-by-code-or-name,.search-by-count{
+                                        width: 20%;
+                                    }
+                                    .search-by-cate,.search-by-owner{
+                                        width: 13%;
+                                        .ant-space.ant-space-vertical,.ant-space.ant-space-horizontal.ant-space-align-center,.ant-space-item,.ant-btn.ant-dropdown-trigger{
+                                            width: 100%;
+                                        }
+                                    }
+                                    .search-btn{
+                                        :first-child{
+                                            border-radius: 5px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

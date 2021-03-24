@@ -1,0 +1,17 @@
+@mixin text-base($font-size, $color) {
+  font-family: $base-font;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  font-size: $font-size;
+  color: $color;
+}
+
+@mixin create-class($attribute: "margin-top", $list: $listMarginTop) {
+  @each $name, $px in $list {
+    .#{$name} {
+      #{$attribute}: $px;
+    }
+  }
+}

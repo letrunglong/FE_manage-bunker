@@ -3,7 +3,7 @@ import { SignalFilled } from '@ant-design/icons';
 class ActivitiesOfTheDay extends Component {
     render() {
         return (
-            <div className='activities statistical-bottom'>
+            <div className='activities statistical-bottom border-radius-5'>
                 <div className='title'>
                     <SignalFilled />
                     <span>Hoạt động</span>
