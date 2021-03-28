@@ -8,5 +8,6 @@ export const ROUTE = {
     SIGN_IN : "/login",
     SIGN_OUT : "/logout",
     SIGN_UP : "/register",
+    FORGOT : "/forgot",
     REVENUE : "/revenue",
 }

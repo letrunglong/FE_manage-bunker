@@ -6,6 +6,15 @@
                 .main{
                     .ant-layout.private-layout-container{
                         .ant-layout{
+                            .component{
+                                .statistical{
+                                    font-size: 14px;
+                                    text-align: left;
+                                    background-color: #D4EAF9;
+                                    padding: 10px;
+                                    border-radius: 5px;
+                                }
+                            }
                             .component.cart{
                                 .class-title{
                                     display: flex;
@@ -76,13 +85,7 @@
                                 .cart-content{
                                     margin-top: 30px;
                                 }
-                                .statistical{
-                                    font-size: 14px;
-                                    text-align: left;
-                                    background-color: #D4EAF9;
-                                    padding: 10px;
-                                    border-radius: 5px;
-                                }
+                                
                             }
                         }
                     }

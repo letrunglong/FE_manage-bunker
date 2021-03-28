@@ -1,15 +1,53 @@
+@import '/src/assets/css/variables.scss';
 #root{
     .App{
-        .top-bar{
-            .container{
-                .main{
-                    .ant-layout.private-layout-container{
-                        .ant-layout{
-                            .component{
+        .ant-layout.public-layout-container{
+            .sign-in{
+                            // background-color: #E6E6E6;
+                background-image: url("https://drscdn.500px.org/photo/1030107904/q%3D80_m%3D2000/v2?sig=ea3dc4d6c19601f91f8f797f0e0fe00275616e1f25b58ea3903f2e5279867625");
+                background-position: bottom center;
+                display: flex;
+                width: 100%;
+                height: 100vh;
+                justify-content: center;
+                .child{
+                    background-color: #e6e6e6;
+                    width: 20%;
+                    align-self: center;
+                    padding: 10px 20px;
+                    border-radius: 5px;
+                    .ant-form.ant-form-horizontal{
+                        .form{
+                            .ant-row.ant-form-item{
+                                display: block;
+                                .ant-col.ant-form-item-label{
+                                    width: 100%;
+                                    text-align: left;
+                                    font-size: 16px;
+                                    font-weight: 500;
+                                }
+                                .ant-col.ant-form-item-control{
+                                    .ant-form-item-control-input{
+                                        .ant-input{
+                                            border-radius: 5px !important;
+                                        }
+                                        
+                                    }
+                                }
                             }
                         }
+                        .btn-signin{
+                            .ant-btn.ant-btn-primary{
+                                width: 100%;
+                                border-radius: 5px;
+                            }
+                        }
+                        .bottom{
+                            display: flex;
+                            justify-content: space-between;
+                        }
                     }
-                }
+                 }
             }
         }
     }

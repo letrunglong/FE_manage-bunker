@@ -5,7 +5,54 @@
                 .main{
                     .ant-layout.private-layout-container{
                         .ant-layout{
-                            .component{
+                            .component.import-product.products{
+                                .search-import{
+                                    display: flex;
+                                    .left{
+                                        display: flex;
+                                        width: 80%;
+                                        div{
+                                            margin-right: 10px;
+                                            div,input{
+                                                border-radius: 5px;
+                                            }
+                                        }
+                                        .search-by-code,.search-by-name{
+                                            width: 30%;
+                                        }
+                                        .search-by-date{
+                                            width: 40%;
+                                            .ant-picker.ant-picker-range{
+                                                width: 100%;
+                                            }
+                                        }
+                                        .btn-search{
+                                            width: 10%;
+                                            .ant-btn.ant-btn-primary{
+                                                border-radius: 5px;
+                                            }
+                                        }
+                                    }
+                                    .right{
+                                        display: flex;
+                                        width: 20%;
+                                        justify-content: flex-end ;
+                                        :first-child{
+                                            border-top-left-radius: 5px;
+                                            border-bottom-left-radius: 5px;
+                                        }
+                                        :last-child{
+                                            border-top-right-radius: 5px;
+                                            border-bottom-right-radius: 5px;
+                                        }
+                                        .ant-btn{
+                                            width: 31%;
+                                        }
+                                    }
+                                }
+                                .import-content{
+                                    margin-top: 30px;
+                                }
                             }
                         }
                     }

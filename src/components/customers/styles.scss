@@ -5,7 +5,34 @@
                 .main{
                     .ant-layout.private-layout-container{
                         .ant-layout{
-                            .component{
+                            .component.customers{
+                                .tab-nav{
+                                    .content.customer-tab{
+                                        .search-customer{
+                                            display: flex;
+                                            width: 70%;
+                                            justify-content: space-between;
+                                            margin-bottom: 16px;
+                                            .search-name{
+                                                width: 45%;
+                                                .ant-input{
+                                                    border-radius: 5px;
+                                                }
+                                            }
+                                            .search-all{
+                                                width: 40%;
+                                                .ant-input{
+                                                    border-radius: 5px;
+                                                }
+                                            }
+                                            .btn-search{
+                                                .ant-btn{
+                                                    border-radius: 5px;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
