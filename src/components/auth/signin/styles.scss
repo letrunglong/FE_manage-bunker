@@ -2,8 +2,7 @@
 #root{
     .App{
         .ant-layout.public-layout-container{
-            .sign-in{
-                            // background-color: #E6E6E6;
+            .public-route{
                 background-image: url("https://drscdn.500px.org/photo/1030107904/q%3D80_m%3D2000/v2?sig=ea3dc4d6c19601f91f8f797f0e0fe00275616e1f25b58ea3903f2e5279867625");
                 background-position: bottom center;
                 display: flex;
@@ -11,8 +10,17 @@
                 height: 100vh;
                 justify-content: center;
                 .child{
+                    .title{
+                        font-size: 20px;
+                        font-weight: 600;
+                        margin-bottom: 10px;
+                    }
+                }
+            }
+            .public-route{
+                .child{
                     background-color: #e6e6e6;
-                    width: 20%;
+                    width: 25%;
                     align-self: center;
                     padding: 10px 20px;
                     border-radius: 5px;
@@ -45,6 +53,7 @@
                         .bottom{
                             display: flex;
                             justify-content: space-between;
+                            font-size: 16px;
                         }
                     }
                  }

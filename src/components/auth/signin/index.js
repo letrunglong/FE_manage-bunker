@@ -44,8 +44,11 @@ class AuthLogin extends Component {
     }
     render() {
         return (
-            <div className='sign-in'>
+            <div className='sign-in public-route'>
                 <div className='child'>
+                    <div className='title'>
+                        SIGN IN
+                    </div>
                     <Form
                         onFinish={() => this.onFinish(this.state.email, this.state.password)}>
                         <div className='email form'>

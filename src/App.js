@@ -13,6 +13,7 @@ import ImportProduct from 'components/import-prod';
 import ExportProduct from 'components/export-prod';
 import RevenueComponent from 'components/renueve';
 import Notificate from 'components/notificate'
+import SignUpPage from 'components/auth/signup';
 
 const checkLogin = () => {
   if (localStorage.getItem("token"))
@@ -70,8 +71,8 @@ function App() {
           <React.Fragment>
 
             <PublicRoute exact path={ROUTE.SIGN_IN} component={AuthLogin} />
-            {/* <PublicRoute exact path={ROUTE.SIGNUP} component={SignUpPage} />
-            <PublicRoute exact path={ROUTE.FORGOT} component={Authforgot} /> */}
+            <PublicRoute exact path={ROUTE.SIGN_UP} component={SignUpPage} />
+            {/* <PublicRoute exact path={ROUTE.FORGOT} component={Authforgot} /> */}
             <PrivateRoute exact path={ROUTE.DASHBOARD} component={DashBoard} />
             <PrivateRoute exact path={ROUTE.CART} component={CartComponent} />
             <PrivateRoute exact path={ROUTE.PRODUCT} component={ProductComponent} />

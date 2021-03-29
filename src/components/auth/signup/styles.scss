@@ -1,11 +1,14 @@
 #root{
     .App{
-        .top-bar{
-            .containerr{
-                .main{
-                    .ant-layout.private-layout-container{
-                        .ant-layout{
-                            .component{
+        .ant-layout.public-layout-container{
+            .sign-up.sign-in.public-route{
+                .child{
+                    .ant-form.ant-form-horizontal{
+                        .full-name.form{
+                            display: flex;
+                            justify-content: space-between;
+                            .form{
+                                width: 49%;
                             }
                         }
                     }
