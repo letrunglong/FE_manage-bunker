@@ -2,7 +2,7 @@
 #root{
     .App{
         .top-bar{
-            .container{
+            .containerr{
                 .main{
                     .ant-layout.private-layout-container{
                         .ant-layout{
@@ -28,7 +28,8 @@
                                         background-color: $bg-button;
                                         color: white;
                                         font-weight: normal;
-                                        align-self: center;
+                                        align-items: center;
+                                        display: flex;
                                         .anticon.anticon-carry-out{
                                             margin-right: 5px;
                                         }

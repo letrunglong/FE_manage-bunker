@@ -12,9 +12,10 @@ import CustomersComponent from 'components/customers';
 import ImportProduct from 'components/import-prod';
 import ExportProduct from 'components/export-prod';
 import RevenueComponent from 'components/renueve';
+import Notificate from 'components/notificate'
 
 const checkLogin = () => {
-  if (localStorage.getItem("isLogin"))
+  if (localStorage.getItem("token"))
     return true
   return false
 }
@@ -62,10 +63,12 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 function App() {
   return (
     <div className="App" >
+      <Notificate />
       {/* <NavBar/> */}
       <Router>
         <Route render={({ location, history }) => (
           <React.Fragment>
+
             <PublicRoute exact path={ROUTE.SIGN_IN} component={AuthLogin} />
             {/* <PublicRoute exact path={ROUTE.SIGNUP} component={SignUpPage} />
             <PublicRoute exact path={ROUTE.FORGOT} component={Authforgot} /> */}

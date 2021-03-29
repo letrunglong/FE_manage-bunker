@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import ActivitiesOfTheDay from './activities';
 import BunkerInfor from './bunker-infor';
 import OrderAmount from './order-amount';
@@ -12,6 +13,7 @@ class DashBoard extends Component {
         return "https://instagram.fsgn5-4.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/p640x640/158601647_732931767410536_126768768056918096_n.jpg?tp=1&_nc_ht=instagram.fsgn5-4.fna.fbcdn.net&_nc_cat=104&_nc_ohc=c0kn_efk0oMAX8R02Dr&ccb=7-4&oh=5adf9fb52c32d7ce7b620225c187c02b&oe=607DF3FC&_nc_sid=4f375e"
     }
     render() {
+        console.log(this.props.dataUser);
         return (
             <div className='component dashboard'>
                 <span className='title'>Hoạt động hôm nay</span>
@@ -29,5 +31,9 @@ class DashBoard extends Component {
         );
     }
 }
-
-export default DashBoard;
+const mapStateToProps = (state, ownProps) => {
+    return {
+        dataUser: state.loginReducer.dataUser
+    }
+}
+export default connect(mapStateToProps)(DashBoard)

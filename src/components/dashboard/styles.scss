@@ -2,7 +2,7 @@
 #root{
     .App{
         .top-bar{
-            .container{
+            .containerr{
                 .main{
                     .ant-layout.private-layout-container{
                         .ant-layout{
@@ -101,7 +101,6 @@
                                     display: flex;
                                     justify-content: space-between;
                                     margin-top: 50px;
-                                    
                                     .statistical-bottom{
                                         width: 30%;
                                         height: 100%;
@@ -113,9 +112,9 @@
                                         .title{
                                             text-align: left;
                                             font-size: 18px;
-                                            // font-weight: 600;
-                                            float: unset;
-                                            margin-bottom: 0;
+                                            align-items: center;
+                                            display: flex;
+                                            float: none;
                                             :first-child{
                                                 margin-right: 1%;
                                             }

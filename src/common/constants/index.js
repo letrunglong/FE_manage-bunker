@@ -11,3 +11,4 @@ export const ROUTE = {
     FORGOT : "/forgot",
     REVENUE : "/revenue",
 }
+export const USER_INFOR_KEY = "userInfor"

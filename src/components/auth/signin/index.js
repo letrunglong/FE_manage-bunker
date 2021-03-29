@@ -4,41 +4,50 @@ import { Link } from 'react-router-dom';
 import { ROUTE } from 'common/constants';
 import './styles.scss'
 import axios from 'axios';
+import store from 'components/redux/store';
+import { connect } from 'react-redux';
+import { TYPES } from 'components/redux/constants';
 class AuthLogin extends Component {
     constructor(props) {
         super(props);
-        this.state={
-            email:"",
-            password:"",
+        this.state = {
+            email: "",
+            password: "",
         }
     }
     isChange = (event) => {
         const name = event.target.name
         const value = event.target.value
         this.setState({
-            [name]:value
+            [name]: value
         })
     }
-    onFinish = (email,pass) => {
+    onFinish = (email, pass) => {
         let obj = {}
-        obj.email=email
-        obj.password=pass
+        obj.email = email
+        obj.password = pass
         axios({
-            method:"POST",
-            url:'/login',
-            headers:{
-                "Content-Type":"Application/json"
+            method: "POST",
+            url: '/login',
+            headers: {
+                "Content-Type": "Application/json"
             },
-            data:JSON.stringify(obj)
-            
-        }).then(res=>console.log(res))
+            data: JSON.stringify(obj)
+
+        }).then(res => {
+            store.dispatch({ type: TYPES.ALERT_NOTIFIER_ON, messages:res.data.messages})
+            store.dispatch({ type: TYPES.AUTH_SIGNIN, res })
+        }
+        ).catch(err=>{
+            store.dispatch({type:TYPES.ALERT_NOTIFIER_ON,messages:"fail"})
+        })
     }
     render() {
         return (
             <div className='sign-in'>
                 <div className='child'>
                     <Form
-                        onFinish={()=>this.onFinish(this.state.email,this.state.password)}>
+                        onFinish={() => this.onFinish(this.state.email, this.state.password)}>
                         <div className='email form'>
                             <Form.Item
                                 label="Email"
@@ -72,5 +81,4 @@ class AuthLogin extends Component {
         );
     }
 }
-
-export default AuthLogin;
+export default connect()(AuthLogin)

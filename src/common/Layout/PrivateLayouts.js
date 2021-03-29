@@ -29,7 +29,7 @@ const PrivateLayout = () => {
   return (
     <>
       <div className="top-bar">
-        <div className="container" >
+        <div className="containerr" >
           <SideNav
             onSelect={(selected) => {
               const to = '/' + selected;

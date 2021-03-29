@@ -1,7 +1,7 @@
 #root{
     .App{
         .top-bar{
-            .container{
+            .containerr{
                 .main{
                     .ant-layout.private-layout-container{
                         .ant-layout{
@@ -19,6 +19,8 @@
                                         font-weight: 400;
                                         border: 1px solid gray;
                                         cursor: pointer;
+                                        display: flex;
+                                        align-items: center;
                                         span:first-child{
                                             margin-right: 5px;
                                         }
