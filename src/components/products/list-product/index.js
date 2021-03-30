@@ -1,104 +1,87 @@
 import React, { Component } from 'react';
-import { Table} from 'antd';
+import { Image, Table } from 'antd';
+import axios from 'axios';
+import { connect } from 'react-redux';
 
 const columns = [
     {
         title: 'Tên sản phẩm',
-        dataIndex: 'name',
-        key: 'name',
+        dataIndex: 'prod_name',
+        key: 'prod_name',
         render: text => <a>{text}</a>,
     },
     {
         title: 'Mã sản phẩm',
-        dataIndex: 'age',
-        key: 'age',
+        dataIndex: 'prod_id',
+        key: 'prod_id',
     },
     {
         title: 'SL',
-        dataIndex: 'address',
-        key: 'address',
+        dataIndex: 'prod_quantity',
+        key: 'prod_quantity',
     },
     {
         title: 'Giá bán',
-        key: 'price',
-        dataIndex: 'price',
+        key: 'prod_price',
+        dataIndex: 'prod_price',
     },
     {
         title: 'Danh mục',
-        dataIndex: 'category',
-        key: 'category',
+        dataIndex: 'cate_name',
+        key: 'cate_name',
     },
     {
         title: 'Nhà sản xuất',
-        dataIndex: 'total',
-        key: 'total',
-    },
-];
-
-const data = [
-    {
-        key: '1',
-        name: 'Nike Dunk Low',
-        age: 32123123123,
-        address: 100,
-        category: 'Nike Dunk',
-        total: 'Nike, Inc.',
-        price: '$1500',
+        dataIndex: 'prod_producer',
+        key: 'prod_producer',
     },
     {
-        key: '1',
-        name: 'Nike Dunk Low',
-        age: 32123123123,
-        address: 100,
-        category: 'Nike Dunk',
-        total: 'Nike, Inc.',
-        price: '$1500',
+        title: 'Đơn vị tính',
+        dataIndex: 'prod_unit',
+        key: 'prod_unit',
     },
     {
-        key: '1',
-        name: 'Nike Dunk Low',
-        age: 32123123123,
-        address: 100,
-        category: 'Nike Dunk',
-        total: 'Nike, Inc.',
-        price: '$1500',
-    },
-    {
-        key: '1',
-        name: 'Nike Dunk Low',
-        age: 32123123123,
-        address: 100,
-        category: 'Nike Dunk',
-        total: 'Nike, Inc.',
-        price: '$1500',
-    },
-    {
-        key: '1',
-        name: 'Nike Dunk Low',
-        age: 32123123123,
-        address: 100,
-        category: 'Nike Dunk',
-        total: 'Nike, Inc.',
-        price: '$1500',
-    },
-    {
-        key: '1',
-        name: 'Nike Dunk Low',
-        age: 32123123123,
-        address: 100,
-        category: 'Nike Dunk',
-        total: 'Nike, Inc.',
-        price: '$1500',
+        title: 'Hình ảnh',
+        dataIndex: 'prod_image',
+        key: 'prod_image',
+        render: prod_image=>{
+            return <Image src={prod_image} style={{width:'100px'}}/>
+        }
     },
 ];
 class ProductsList extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            data: [],
+
+        }
+    }
+    componentWillMount() {
+        if (localStorage.getItem('token')) {
+            axios({
+                method: "GET",
+                url: '/getProducts'
+            }).then(res => {
+                this.setState({
+                    data:res.data
+                })
+            }
+            )
+        } else {
+            console.log("can't get products");
+        }
+    }
+    renderProducts = () => {
+
+    }
     render() {
+        console.log(this.state.data);
         return (
             <div className='content'>
-                <Table columns={columns} dataSource={data} />
+                <Table columns={columns} dataSource={this.state.data} />
             </div>
         );
     }
 }
-
-export default ProductsList;
+export default connect()(ProductsList)

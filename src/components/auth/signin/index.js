@@ -39,7 +39,7 @@ class AuthLogin extends Component {
             store.dispatch({ type: TYPES.AUTH_SIGNIN, res })
         }
         ).catch(err=>{
-            store.dispatch({type:TYPES.ALERT_NOTIFIER_ON,messages:"fail"})
+            store.dispatch({type:TYPES.ALERT_NOTIFIER_ON,messages:"Không có phản hồi từ máy chủ"})
         })
     }
     render() {

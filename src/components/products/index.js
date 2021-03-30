@@ -3,6 +3,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import './styles.scss'
 import SearchOnProduct from './search'
 import ProductsList from './list-product';
+import { Button } from 'antd';
 
 class ProductComponent extends Component {
     constructor(props) {
@@ -24,10 +25,10 @@ class ProductComponent extends Component {
             <div className='component products'>
                 <div className='outside'>
                     <div className='title'>Danh sách sản phẩm</div>
-                    <div className='title btn-add' onClick={() => this.setState({ isAddProduct: !this.state.isAddProduct })}>
+                    <Button type="primary" className='title btn-add' onClick={() => this.setState({ isAddProduct: !this.state.isAddProduct })}>
                         <PlusOutlined />
                         <span>Thêm sản phẩm</span>
-                    </div>
+                    </Button>
                 </div>
                 {
                     this.renderItems()

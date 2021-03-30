@@ -17,6 +17,8 @@ export default function loginReducer(state = loginInitialState, action) {
                     })
                     localStorage.setItem('token', tokenUser)
                     window.location.pathname = `${ROUTE.DASHBOARD}`
+                    // window.history.pushState(tokenUser,'data',window.location.pathname = `${ROUTE.DASHBOARD}`)
+
                 }
                 return { ...state, isLogin: true, dataUser: action.res.data.data }
             }
