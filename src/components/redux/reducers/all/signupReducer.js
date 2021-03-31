@@ -1,6 +1,6 @@
 import axios from "axios";
-import { TYPES } from "../constants"
-import store from "../store";
+import { TYPES } from "components/redux/constants"
+import store from "components/redux/store";
 
 const signupInitialState = {
 

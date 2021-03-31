@@ -1,5 +1,5 @@
 import { ROUTE, USER_INFOR_KEY } from "common/constants"
-import { TYPES } from "../constants"
+import { TYPES } from "components/redux/constants"
 
 
 const loginInitialState = {

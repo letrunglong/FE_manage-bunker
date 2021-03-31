@@ -1,4 +1,4 @@
-import { TYPES } from "../constants"
+import { TYPES } from "components/redux/constants"
 
 const alertReducerInitialState = {
     messages: "",

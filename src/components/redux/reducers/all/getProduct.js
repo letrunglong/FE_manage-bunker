@@ -1,4 +1,5 @@
-import { TYPES } from "../constants"
+import { TYPES } from "components/redux/constants"
+
 
 
 const getProducts = (state = [], action) => {

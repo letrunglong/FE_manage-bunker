@@ -68,15 +68,9 @@ class ProductsList extends Component {
                 })
             }
             )
-        } else {
-            console.log("can't get products");
         }
     }
-    renderProducts = () => {
-
-    }
-    render() {
-        console.log(this.state.data);
+    render(){
         return (
             <div className='content'>
                 <Table columns={columns} dataSource={this.state.data} />

@@ -47,6 +47,40 @@
                                         }
                                     }
                                 }
+                                .add-product{
+                                    background-color: #FFFFFF;
+                                    padding: 10px 20px;
+                                    border-radius: 5px;
+                                    .out-side{
+                                        .ant-form.ant-form-horizontal{
+                                            .parent{
+                                                display: flex;
+                                                justify-content: space-between;
+                                                .form{
+                                                    width: 49%;
+                                                    .ant-row.ant-form-item{
+                                                        display: block;
+                                                        margin-bottom: 10px;
+                                                        .ant-col.ant-form-item-label{
+                                                            width: 100%;
+                                                            text-align: left;
+                                                        }
+                                                        .ant-col.ant-form-item-control{
+                                                            .ant-input,.ant-select.ant-select-single.ant-select-show-arrow > .ant-select-selector{
+                                                                border-radius: 5px;
+                                                            }
+                                                            .ant-form-item-explain.ant-form-item-explain-error{
+                                                                text-align: left;
+                                                                padding-left: 10px;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            
+                                        }
+                                    }
+                                }
                             }
                         }
                     }

@@ -4,6 +4,7 @@ import './styles.scss'
 import SearchOnProduct from './search'
 import ProductsList from './list-product';
 import { Button } from 'antd';
+import AddNewproducts from './add-product';
 
 class ProductComponent extends Component {
     constructor(props) {
@@ -14,7 +15,7 @@ class ProductComponent extends Component {
     }
     renderItems = () => {
         if (this.state.isAddProduct)
-            return <span>Add product component</span>
+            return <AddNewproducts />
         return <>
             <SearchOnProduct />
             <ProductsList />

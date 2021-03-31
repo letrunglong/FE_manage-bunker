@@ -69,7 +69,6 @@ function App() {
       <Router>
         <Route render={({ location, history }) => (
           <React.Fragment>
-
             <PublicRoute exact path={ROUTE.SIGN_IN} component={AuthLogin} />
             <PublicRoute exact path={ROUTE.SIGN_UP} component={SignUpPage} />
             {/* <PublicRoute exact path={ROUTE.FORGOT} component={Authforgot} /> */}
