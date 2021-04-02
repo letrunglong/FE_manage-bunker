@@ -4,10 +4,12 @@ import alertReducer from "./all/alertMessages"
 import signupReducer from "./all/signupReducer"
 import getProducts from "./all/getProduct"
 import addProducts from"./all/addProduct"
+import addOnProductsReducers from './all/add-onp-roducts-products'
 export default combineReducers({
     loginReducer,
      alertReducer, 
      signupReducer, 
      getProducts,
      addProducts,
+     addOnProductsReducers,
 })

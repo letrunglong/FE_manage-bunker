@@ -71,7 +71,7 @@ class AddNewproducts extends Component {
             data: fd
         }).then(res => {
             store.dispatch({type:TYPES.ALERT_NOTIFIER_ON,messages:res.data.messages})
-        })
+        }).catch(err=>{store.dispatch({type:TYPES.ALERT_NOTIFIER_ON,messages:"Không có phản hồi từ máy chủ"})})
     }
     isChange = (event) => {
         const name = event.target.name
