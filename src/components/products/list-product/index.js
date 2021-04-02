@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Image, Table } from 'antd';
-import axios from 'axios';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 const columns = [
     {
@@ -28,24 +28,25 @@ const columns = [
     {
         title: 'Danh mục',
         dataIndex: 'cate_name',
-        key: 'cate_name',
+        key: 'prod_cate',
     },
     {
         title: 'Nhà sản xuất',
-        dataIndex: 'prod_producer',
+        dataIndex: 'producer_name',
         key: 'prod_producer',
     },
     {
         title: 'Đơn vị tính',
-        dataIndex: 'prod_unit',
+        dataIndex: 'unit_name',
         key: 'prod_unit',
     },
     {
         title: 'Hình ảnh',
         dataIndex: 'prod_image',
         key: 'prod_image',
-        render: prod_image=>{
-            return <Image src={prod_image} style={{width:'100px'}}/>
+        render: prod_image => {
+            const url = "http://localhost:4000/products-image/" + prod_image
+            return <Image src={url} style={{ height: '50px',width:'100px' }} />
         }
     },
 ];
@@ -63,14 +64,15 @@ class ProductsList extends Component {
                 method: "GET",
                 url: '/getProducts'
             }).then(res => {
+                console.log(res.data);
                 this.setState({
-                    data:res.data
+                    data: res.data
                 })
             }
             )
         }
     }
-    render(){
+    render() {
         return (
             <div className='content'>
                 <Table columns={columns} dataSource={this.state.data} />

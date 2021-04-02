@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Redirect, Route } from "react-router-dom";
 import './App.css';
 import AuthLogin from './components/auth/signin';
@@ -14,6 +14,7 @@ import ExportProduct from 'components/export-prod';
 import RevenueComponent from 'components/renueve';
 import Notificate from 'components/notificate'
 import SignUpPage from 'components/auth/signup';
+import axios from 'axios';
 
 const checkLogin = () => {
   if (localStorage.getItem("token"))

@@ -2,8 +2,10 @@ import { Button, Input, Form, Select, Upload, Image } from 'antd';
 
 import axios from 'axios';
 import { TYPES } from 'components/redux/constants';
+import addProducts from 'components/redux/reducers/all/addProduct';
 import store from 'components/redux/store';
 import React, { Component } from 'react';
+import ListAddFromProduct from './btn-list';
 const { Option } = Select;
 const axiosClient = (link, method, data) => {
     return axios({
@@ -11,23 +13,6 @@ const axiosClient = (link, method, data) => {
         url: `${link}`,
         data: `${data}`
     })
-}
-const  string_to_slug = (str) => {
-    str = str.replace(/^\s+|\s+$/g, ''); // trim
-    str = str.toLowerCase();
-  
-    // remove accents, swap ñ for n, etc
-    var from = "àầáäâèéëêìíïîòóöôùúüûñç·/_,:;";
-    var to   = "aaaaaeeeeiiiioooouuuunc------";
-    for (var i=0, l=from.length ; i<l ; i++) {
-        str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
-    }
-
-    str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
-        .replace(/\s+/g, '-') // collapse whitespace and replace by -
-        .replace(/-+/g, '-'); // collapse dashes
-
-    return str;
 }
 class AddNewproducts extends Component {
     constructor(props) {
@@ -38,8 +23,8 @@ class AddNewproducts extends Component {
             bunkerData: [],
             producerData: [],
             selectedFile: null,
-            imageName: '',
-            srcImg:''
+            srcImg: '',
+            product_image: null,
         }
     }
     componentWillMount() {
@@ -64,27 +49,29 @@ class AddNewproducts extends Component {
                     producerData: res.data
                 })
             })
-            axiosClient('/products/images/1',"GET").then(res=>console.log(res))
+            // axiosClient('/products/images', "GET").then(res => console.log(res))
         }
     }
     onFinish = () => {
         let { product_name, product_bunker, product_cate, product_price, product_producer, product_quantity, product_unit } = this.state
-        let obj = {}
-        obj.product_name = product_name
-        obj.product_bunker = product_bunker
-        obj.product_cate = product_cate
-        obj.product_price = product_price
-        obj.product_producer = product_producer
-        obj.product_quantity = product_quantity
-        obj.product_unit = product_unit
-        // store.dispatch({ type: TYPES.POST_ADD_PRODUCT, data: obj })
         const fd = new FormData()
-        // fd.append('image', this.state.selectedFile, this.state.selectedFile.name)
-        const nameimag = () => {
-            return string_to_slug(this.state.imageName.replace(this.state.imageName,this.state.product_name))
-        }
-        fd.append('image', this.state.selectedFile, nameimag())
-        axios.post('/add-products', fd).then(res => console.log(res))
+        fd.append('image', this.state.product_image,this.state.product_image.name)
+        fd.append('product_name', product_name)
+        fd.append('product_bunker', product_bunker)
+        fd.append('product_cate', product_cate)
+        fd.append('product_price', product_price)
+        fd.append('product_producer', product_producer)
+        fd.append('product_quantity', product_quantity)
+        fd.append('product_unit', product_unit)
+        fd.append('product_image', this.state.product_image.name)
+        axios({
+            method: "POST",
+            url: "/add-products",
+            headers: { "Content-Type": "multipart/form-data" },
+            data: fd
+        }).then(res => {
+            store.dispatch({type:TYPES.ALERT_NOTIFIER_ON,messages:res.data.messages})
+        })
     }
     isChange = (event) => {
         const name = event.target.name
@@ -113,17 +100,17 @@ class AddNewproducts extends Component {
             return <Option value={val.producer_id}>{val.producer_name}</Option>
         })
     }
-
-    //set image to state
     fileChangedHandler = (event) => {
         this.setState({
-            selectedFile: event.target.files[0],
-            imageName: event.target.files[0].name
+            product_image: event.target.files[0],
         })
     }
     render() {
         return (
             <div className='add-product'>
+            <div className='add-data-field'>
+                <ListAddFromProduct/>
+            </div>
                 <div className='out-side'>
                     <Form
                         onFinish={() => this.onFinish()}>
@@ -200,8 +187,11 @@ class AddNewproducts extends Component {
                                 </Form.Item>
                             </div>
                             <div className='product-image form'>
-                                <Input type="file" className="input-add-img" onChange={(event) => this.fileChangedHandler(event)} />
-                                <Image src={this.state.srcImg}/>
+                                <Form.Item
+                                    label="Product image"
+                                    name="product-image">
+                                    <Input type="file" className="input-add-img" onChange={(event) => this.fileChangedHandler(event)} />
+                                </Form.Item>
                             </div>
                         </div>
                         <div className='btn-add-product'>

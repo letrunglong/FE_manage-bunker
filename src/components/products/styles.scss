@@ -48,10 +48,24 @@
                                     }
                                 }
                                 .add-product{
-                                    background-color: #FFFFFF;
-                                    padding: 10px 20px;
-                                    border-radius: 5px;
+                                    .add-data-field{
+                                        width: 100%;
+                                        display: flex;
+                                        justify-content:flex-end;
+                                        margin-bottom: 30px;
+                                        font-size: 16px;
+                                        .btn-add{
+                                            margin-left: 10px;
+                                            .ant-btn.ant-btn-primary{
+                                                border-radius: 5px;
+                                            }
+                                            
+                                        }
+                                    }
                                     .out-side{
+                                        background-color: #FFFFFF;
+                                        border-radius: 5px;
+                                        padding: 10px 20px;
                                         .ant-form.ant-form-horizontal{
                                             .parent{
                                                 display: flex;
@@ -77,6 +91,16 @@
                                                     }
                                                 }
                                             }
+                                            .btn-add-product{
+                                                .ant-form-item-control-input-content{
+                                                    display: flex;
+                                                    margin-top: 10px;
+                                                    .ant-btn.ant-btn-primary{
+                                                        width: 49%;
+                                                        border-radius: 5px;
+                                                    }
+                                                }
+                                            }
                                             
                                         }
                                     }
@@ -86,6 +110,30 @@
                     }
                 }
             }
+        }
+    }
+}
+.ant-modal.modal-add-list{
+    .ant-modal-content{
+        padding: 25px 10px;
+        .ant-modal-body{
+            .parent{
+                .title-modal{
+                    font-size: 20px;
+                    font-weight: 500;
+                    margin-bottom: 20px;
+                }
+                .ant-form.ant-form-horizontal{
+                    .ant-col.ant-form-item-label{
+                        width: 100%;
+                        display: block;
+                        text-align: left;
+                    }
+                }
+            }
+        }
+        .ant-modal-footer{
+            display: none;
         }
     }
 }

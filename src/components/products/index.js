@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { PlusOutlined } from '@ant-design/icons';
+import { PlusOutlined, RollbackOutlined } from '@ant-design/icons';
 import './styles.scss'
 import SearchOnProduct from './search'
 import ProductsList from './list-product';
@@ -21,14 +21,19 @@ class ProductComponent extends Component {
             <ProductsList />
         </>
     }
+    renderTextButton = () => {
+        if (this.state.isAddProduct)
+            return <><RollbackOutlined /><span>Trở về</span></>
+        return <><PlusOutlined />
+            <span>Thêm sản phẩm</span></>
+    }
     render() {
         return (
             <div className='component products'>
                 <div className='outside'>
                     <div className='title'>Danh sách sản phẩm</div>
                     <Button type="primary" className='title btn-add' onClick={() => this.setState({ isAddProduct: !this.state.isAddProduct })}>
-                        <PlusOutlined />
-                        <span>Thêm sản phẩm</span>
+                        {this.renderTextButton()}
                     </Button>
                 </div>
                 {
