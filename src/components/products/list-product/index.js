@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
-import { Image, Table } from 'antd';
+import { Button, Image, Table } from 'antd';
 import { connect } from 'react-redux';
 import axios from 'axios';
-
+import store from 'components/redux/store';
+import { TYPES } from 'components/redux/constants';
+const deleteProduct = (id) => {
+    store.dispatch({
+        type: TYPES.DELETE_PRODUCTS,
+        id
+    })
+}
 const columns = [
     {
         title: 'Tên sản phẩm',
@@ -21,9 +28,14 @@ const columns = [
         key: 'prod_quantity',
     },
     {
-        title: 'Giá bán',
+        title: 'Giá nhập',
         key: 'prod_price',
         dataIndex: 'prod_price',
+    },
+    {
+        title: 'Giá bán',
+        dataIndex: 'price_sell',
+        key: 'price_sell',
     },
     {
         title: 'Danh mục',
@@ -40,13 +52,27 @@ const columns = [
         dataIndex: 'unit_name',
         key: 'prod_unit',
     },
+
     {
         title: 'Hình ảnh',
         dataIndex: 'prod_image',
         key: 'prod_image',
         render: prod_image => {
             const url = "http://localhost:4000/products-image/" + prod_image
-            return <Image src={url} style={{ height: '50px',width:'100px' }} />
+            return <Image src={url} style={{ height: '50px', width: '100px' }} />
+        }
+    },
+    {
+        title: 'Tuỳ chọn',
+        dataIndex: 'prod_id',
+        key: 'prod_id',
+        render: prod_id => {
+            return <>
+                <Button style={{ marginRight: 5 }} key={1} onClick={() => { }} disabled>Sửa</Button>
+                <Button type="primary" key={2} onClick={() => {
+                    deleteProduct(prod_id)
+                }} danger>Xóa</Button>
+            </>
         }
     },
 ];
@@ -55,7 +81,6 @@ class ProductsList extends Component {
         super(props);
         this.state = {
             data: [],
-
         }
     }
     componentWillMount() {
@@ -80,4 +105,10 @@ class ProductsList extends Component {
         );
     }
 }
-export default connect()(ProductsList)
+
+const mapStateToProps = (state) => {
+    return {
+        dataprod: state.getProducts.data
+    }
+}
+export default connect(mapStateToProps)(ProductsList)

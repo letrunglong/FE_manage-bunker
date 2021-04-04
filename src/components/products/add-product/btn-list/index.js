@@ -39,7 +39,6 @@ class ListAddFromProduct extends Component {
                 <Modal className="modal-add-list"
                     visible={this.state.showModal}
                     onCancel={() => { this.setState({ showModal: false }) }
-                    
                 }
                 >
                     {this.renderModalContent()}

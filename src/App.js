@@ -14,7 +14,6 @@ import ExportProduct from 'components/export-prod';
 import RevenueComponent from 'components/renueve';
 import Notificate from 'components/notificate'
 import SignUpPage from 'components/auth/signup';
-import axios from 'axios';
 
 const checkLogin = () => {
   if (localStorage.getItem("token"))

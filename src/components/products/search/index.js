@@ -1,34 +1,58 @@
 import React, { Component } from 'react';
 import { Menu, Dropdown, Button, Space, Input } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
-const menu = (
-    <Menu>
-        <Menu.Item>
-            <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
-                1st menu item
-      </a>
-        </Menu.Item>
-        <Menu.Item>
-            <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
-                2nd menu item
-      </a>
-        </Menu.Item>
-        <Menu.Item>
-            <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
-                3rd menu item
-      </a>
-        </Menu.Item>
+
+
+const menuCate = (props) => {
+    const renderCate = () => {
+        return props.cateData.map((val, index) => {
+            return <Menu.Item><a key={val.cate_id}>{val.cate_name}</a></Menu.Item>
+        })
+    }
+    return <Menu>
+        {renderCate()}
     </Menu>
-);
+}
+
+
+const menuBunker = (props) => {
+    const renderBunker = () => {
+        return props.producerData.map((val, index) => {
+            return <Menu.Item><a key={val.producer_id}>{val.producer_name}</a></Menu.Item>
+        })
+    }
+    return <Menu>
+        {renderBunker()}
+    </Menu>
+}
+
+
+
 class SearchOnProduct extends Component {
     dropDown = (cate) => {
-        return <Space direction="vertical">
-            <Space wrap>
-                <Dropdown overlay={menu} placement="bottomLeft">
-                    <Button>{cate}</Button>
-                </Dropdown>
-            </Space>
-        </Space>
+        switch (cate) {
+            case "Danh Mục":
+                <Space direction="vertical">
+                    <Space wrap>
+                        <Dropdown overlay={menuCate(this.props)} placement="bottomLeft">
+                            <Button>Danh mục</Button>
+                        </Dropdown>
+                    </Space>
+                </Space>
+                break;
+            case "Nhà sản xuất":
+                <Space direction="vertical">
+                    <Space wrap>
+                        <Dropdown overlay={menuBunker(this.props)} placement="bottomLeft">
+                            <Button>{cate}</Button>
+                        </Dropdown>
+                    </Space>
+                </Space>
+                break;
+            default:
+                break;
+        }
+        return
     }
     render() {
         return (
@@ -40,10 +64,22 @@ class SearchOnProduct extends Component {
                     <Input placeholder='Đang kinh doanh' type="number" />
                 </div>
                 <div className='search-by-cate child'>
-                    {this.dropDown("Danh Mục")}
+                    <Space direction="vertical">
+                        <Space wrap>
+                            <Dropdown overlay={menuCate(this.props)} placement="bottomLeft">
+                                <Button>Danh mục</Button>
+                            </Dropdown>
+                        </Space>
+                    </Space>
                 </div>
                 <div className='search-by-owner child'>
-                    {this.dropDown("Nhà sản xuất")}
+                    <Space direction="vertical">
+                        <Space wrap>
+                            <Dropdown overlay={menuBunker(this.props)} placement="bottomLeft">
+                                <Button>Nhà sản xuất</Button>
+                            </Dropdown>
+                        </Space>
+                    </Space>
                 </div>
                 <div className='search-btn'>
                     <Button type="primary"><SearchOutlined />Tìm kiếm</Button>

@@ -78,6 +78,9 @@
                                                         .ant-col.ant-form-item-label{
                                                             width: 100%;
                                                             text-align: left;
+                                                            .ant-form-item-required{
+                                                                margin-bottom: 0;
+                                                            }
                                                         }
                                                         .ant-col.ant-form-item-control{
                                                             .ant-input,.ant-select.ant-select-single.ant-select-show-arrow > .ant-select-selector{
@@ -88,20 +91,21 @@
                                                                 padding-left: 10px;
                                                             }
                                                         }
+                                                        .ant-form-item-control-input-content{
+                                                            display: flex;
+                                                            margin-top: 10px;
+                                                            .ant-btn.ant-btn-primary{
+                                                                width: 100%;
+                                                                border-radius: 5px;
+                                                            }
+                                                        }
                                                     }
                                                 }
-                                            }
-                                            .btn-add-product{
-                                                .ant-form-item-control-input-content{
-                                                    display: flex;
-                                                    margin-top: 10px;
-                                                    .ant-btn.ant-btn-primary{
-                                                        width: 49%;
-                                                        border-radius: 5px;
-                                                    }
+                                                .form.btn-add-prod{
+                                                    align-self: flex-end;
+                                                    margin-bottom: 10px;
                                                 }
-                                            }
-                                            
+                                            }                                       
                                         }
                                     }
                                 }
@@ -128,6 +132,21 @@
                         width: 100%;
                         display: block;
                         text-align: left;
+                    }
+                    .form{
+                        .ant-col.ant-form-item-control{
+                            .ant-form-item-control-input-content{
+                                .ant-btn.ant-btn-primary{
+                                    width: 100%;
+                                    border-radius: 5px;
+                                }
+                            }
+                        }
+                        .ant-row.ant-form-item{
+                            .ant-input{
+                                border-radius: 5px;
+                            }
+                        }
                     }
                 }
             }

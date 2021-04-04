@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Input, Table, Button} from 'antd';
+import { Table } from 'antd';
 const columns = [
     {
         title: 'Mã phiếu nhập',
@@ -50,51 +50,7 @@ const data = [
         phone: '012345678',
         total: '$15000',
         debt: '$1500',
-    },
-    {
-        key: '1',
-        code: '187738732',
-        name: 'Ngu Văn Ngục',
-        groups: 'A',
-        address: 'TDM, Bình Dương',
-        lasted: 'Thứ Tư, 24 tháng 3, 2021',
-        phone: '012345678',
-        total: '$15000',
-        debt: '$1500',
-    },
-    {
-        key: '1',
-        code: '187738732',
-        name: 'Ngu Văn Ngục',
-        groups: 'A',
-        address: 'TDM, Bình Dương',
-        lasted: 'Thứ Tư, 24 tháng 3, 2021',
-        phone: '012345678',
-        total: '$15000',
-        debt: '$1500',
-    },
-    {
-        key: '1',
-        code: '187738732',
-        name: 'Ngu Văn Ngục',
-        groups: 'A',
-        address: 'TDM, Bình Dương',
-        lasted: 'Thứ Tư, 24 tháng 3, 2021',
-        phone: '012345678',
-        total: '$15000',
-        debt: '$1500',
-    },
-    {
-        key: '1',
-        code: '187738732',
-        name: 'Ngu Văn Ngục',
-        groups: 'A',
-        address: 'TDM, Bình Dương',
-        lasted: 'Thứ Tư, 24 tháng 3, 2021',
-        phone: '012345678',
-        total: '$15000',
-        debt: '$1500',
-    },
+    }
 ];
 class ContentImport extends Component {
     render() {

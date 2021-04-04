@@ -30,14 +30,14 @@ class AddBunkerForm extends Component {
                 <Form  onFinish={()=>this.onFinish(this.state.bunker_name,this.state.bunker_location)}>
                     <div className='bunker-form form'>
                         <Form.Item
-                            label="Tên nhà sản xuất"
+                            label="Tên kho hàng"
                             name="bunker-name"
-                            rules={[{ required: true, message: 'Vui lòng nhập tên nhà sản xuất' }]}
+                            rules={[{ required: true, message: 'Vui lòng nhập tên kho hàng' }]}
                         >
                             <Input name="bunker_name" onChange={(event) => this.isChange(event)} />
                         </Form.Item>
                         <Form.Item
-                            label="Mô tả"
+                            label="Mô tả (*vị trí )"
                             name="producer-location"
                         >
                             <Input name="bunker_location" onChange={(event) => this.isChange(event)} />
