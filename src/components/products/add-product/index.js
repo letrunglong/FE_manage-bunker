@@ -1,6 +1,5 @@
 import { Button, Input, Form, Select } from 'antd';
 import TextArea from 'antd/lib/input/TextArea';
-import axios from 'axios';
 import { TYPES } from 'components/redux/constants';
 import store from 'components/redux/store';
 import React, { Component } from 'react';
@@ -14,8 +13,6 @@ class AddNewproducts extends Component {
             selectedFile: null,
             product_image: null,
         }
-    }
-    componentWillMount() {
     }
     onFinish = () => {
         let { product_name, product_bunker, product_cate, product_price, product_producer, product_quantity, product_unit, product_sell,product_description } = this.state

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button } from 'antd';
 import { Link } from 'react-router-dom';
 import { ROUTE } from 'common/constants';
 import './styles.scss'
@@ -35,11 +35,12 @@ class AuthLogin extends Component {
             data: JSON.stringify(obj)
 
         }).then(res => {
-            store.dispatch({ type: TYPES.ALERT_NOTIFIER_ON, messages:res.data.messages})
-            store.dispatch({ type: TYPES.AUTH_SIGNIN, res })
+            store.dispatch({ type: TYPES.ALERT_NOTIFIER_ON, messages: res.data.messages })
+            setTimeout(function () { store.dispatch({ type: TYPES.AUTH_SIGNIN, res }) }, 200);
+
         }
-        ).catch(err=>{
-            store.dispatch({type:TYPES.ALERT_NOTIFIER_ON,messages:"Không có phản hồi từ máy chủ"})
+        ).catch(err => {
+            store.dispatch({ type: TYPES.ALERT_NOTIFIER_ON, messages: "Không có phản hồi từ máy chủ" })
         })
     }
     render() {

@@ -7,9 +7,6 @@ const AddproductsInitialState = {}
 const addProducts = (state = AddproductsInitialState, action) => {
     switch (action.type) {
         case TYPES.POST_ADD_PRODUCT:     
-        for (var value of action.fd.values()) {
-            console.log(value);
-         }   
             axios({
                 method: "POST",
                 url: "/add-products",

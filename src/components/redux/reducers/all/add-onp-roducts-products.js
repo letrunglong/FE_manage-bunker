@@ -85,8 +85,10 @@ const addOnProductsReducers = (state = {}, action) => {
             })
             break
         case TYPES.DELETE_PRODUCTS:
+            let id= action.prod.id
+            let image= action.prod.image
             return axios({
-                url: '/delete-product/' + action.id,
+                url: '/delete-product/' + id +'/'+ image,
                 method: "DELETE"
             }).then(res => {
                 store.dispatch({

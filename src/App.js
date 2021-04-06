@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Redirect, Route } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter as Router, Redirect, Route, useHistory } from "react-router-dom";
 import './App.css';
 import AuthLogin from './components/auth/signin';
 import DashBoard from './components/dashboard';
@@ -14,7 +14,9 @@ import ExportProduct from 'components/export-prod';
 import RevenueComponent from 'components/renueve';
 import Notificate from 'components/notificate'
 import SignUpPage from 'components/auth/signup';
-
+import { Button, Dropdown, Menu } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
+import { connect } from 'react-redux';
 const checkLogin = () => {
   if (localStorage.getItem("token"))
     return true
@@ -25,12 +27,12 @@ const PublicRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={(props) =>
-        //   checkLogin() ? (
-        //   <Redirect to={{ pathname: "/login", state: { from: props.location } }} />
-        // ) : 
-        <PublicLayout {...rest}>
-          <Component {...props}></Component>
-        </PublicLayout>
+        checkLogin() ? (
+          <Redirect to={{ pathname: "/login", state: { from: props.location } }} />
+        ) :
+          <PublicLayout {...rest}>
+            <Component {...props}></Component>
+          </PublicLayout>
       }
     />
   );
@@ -57,15 +59,36 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     />
   );
 };
-// const NavBar = () => {
-//   return <div className='nav-bar'>
-//   </div>
-// }
-function App() {
+
+const authLogout = () => {
+  localStorage.removeItem('token')
+  window.location.pathname = `${ROUTE.SIGN_IN}`
+
+}
+const menu = (
+  <Menu>
+    <Menu.Item key="1" onClick={() => authLogout()}>
+      Log out
+    </Menu.Item>
+  </Menu>
+);
+const NavBar = () => {
+  if (localStorage.getItem('token'))
+    return <div className='nav-bar'>
+      <span style={{color:'white',fontSize:'18px',marginRight:5}}> Hi {localStorage.getItem('name')} </span>
+      <span style={{color:'white',fontSize:'18px',marginRight:5}}> {localStorage.getItem('sur')}</span>
+      <Dropdown overlay={menu}>
+        <Button><UserOutlined /></Button>
+      </Dropdown>
+    </div>
+  return null
+}
+function App(props) {
+  console.log(props);
   return (
     <div className="App" >
       <Notificate />
-      {/* <NavBar/> */}
+      <NavBar />
       <Router>
         <Route render={({ location, history }) => (
           <React.Fragment>
@@ -87,4 +110,10 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    first_name: state.loginReducer.firstName,
+    last_name: state.loginReducer.lastName,
+  }
+}
+export default connect(mapStateToProps)(App)

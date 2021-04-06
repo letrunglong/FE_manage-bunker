@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
 import { Menu, Dropdown, Button, Space, Input } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
+import store from 'components/redux/store';
+import { TYPES } from 'components/redux/constants';
 
-
+const getProductsByCate = (val) => {
+    store.dispatch({
+        type:TYPES.GET_PRODUCTS_BY_CATE,
+        val
+    })
+}
 const menuCate = (props) => {
     const renderCate = () => {
         return props.cateData.map((val, index) => {
-            return <Menu.Item><a key={val.cate_id}>{val.cate_name}</a></Menu.Item>
+            const value = val.cate_id
+            return <Menu.Item onClick={()=>getProductsByCate(value)}>
+                <a key={val.cate_id}>{val.cate_name}</a></Menu.Item>
         })
     }
     return <Menu>

@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import store from 'components/redux/store';
 import { TYPES } from 'components/redux/constants';
-const deleteProduct = (id) => {
+const deleteProduct = (prod) => {
     store.dispatch({
         type: TYPES.DELETE_PRODUCTS,
-        id
+        prod
     })
 }
 const columns = [
@@ -64,13 +64,17 @@ const columns = [
     },
     {
         title: 'Tuỳ chọn',
-        dataIndex: 'prod_id',
-        key: 'prod_id',
-        render: prod_id => {
+        dataIndex: '',
+        key: '',
+        render: data => {
             return <>
                 <Button style={{ marginRight: 5 }} key={1} onClick={() => { }} disabled>Sửa</Button>
                 <Button type="primary" key={2} onClick={() => {
-                    deleteProduct(prod_id)
+                    let prod = {}
+                    prod.id = data.prod_id
+                    prod.image = data.prod_image
+                    deleteProduct(prod)
+                    // console.log(data.prod_id + data.prod_image);
                 }} danger>Xóa</Button>
             </>
         }
@@ -84,18 +88,15 @@ class ProductsList extends Component {
         }
     }
     componentWillMount() {
-        if (localStorage.getItem('token')) {
-            axios({
-                method: "GET",
-                url: '/getProducts'
-            }).then(res => {
-                console.log(res.data);
-                this.setState({
-                    data: res.data
-                })
-            }
-            )
+        axios({
+            method: "GET",
+            url: '/getProducts'
+        }).then(res => {
+            this.setState({
+                data:res.data
+            })
         }
+        )
     }
     render() {
         return (

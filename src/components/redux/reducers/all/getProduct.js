@@ -2,20 +2,27 @@ import axios from "axios"
 import { TYPES } from "components/redux/constants"
 
 
-
-const getProducts = (state = {data:[]}, action) => {
+const initialState = {
+    data: []
+}
+const getProducts = (state = initialState, action) => {
     switch (action.type) {
         case TYPES.GET_ALL_PRODUCTS:
-            if (localStorage.getItem('token')) {
-                axios({
-                    method: "GET",
-                    url: '/getProducts'
-                }).then(res => {
-                    state.data = res.data
-                }
-                )
+            axios({
+                method: "GET",
+                url: '/getProducts'
+            }).then(res => {
+                state.data = res.data
             }
+            )
             break
+        case TYPES.GET_PRODUCTS_BY_CATE:
+            return axios({
+                url: 'get-product-by-cate/' + action.val,
+                method: "GET"
+            }).then(res => {
+                state = res.data
+            })
         default:
             return state
     }

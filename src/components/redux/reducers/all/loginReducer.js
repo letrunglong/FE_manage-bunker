@@ -5,22 +5,27 @@ import { TYPES } from "components/redux/constants"
 const loginInitialState = {
     isLogin: false,
     dataUser: USER_INFOR_KEY,
-    token: ""
+    token: "",
+    firstName: '',
+    lastName: '',
 }
 export default function loginReducer(state = loginInitialState, action) {
     switch (action.type) {
         case TYPES.AUTH_SIGNIN:
             if (action.res.status === 200) {
                 if (action.res.data.status === 200) {
-                    let tokenUser = action.res.data.data.map((value, index) => {
-                        return value.token
+                    return action.res.data.data.map((value, index) => {
+                        state.firstName = value.first_name
+                        state.lastName = value.last_name
+                        state.token = value.token
+                        localStorage.setItem('token', state.token)
+                        localStorage.setItem('name', state.firstName)
+                        localStorage.setItem('sur', state.lastName)
+                        window.location.pathname = `${ROUTE.DASHBOARD}`
+                        return null
                     })
-                    localStorage.setItem('token', tokenUser)
-                    window.location.pathname = `${ROUTE.DASHBOARD}`
-                    // window.history.pushState(tokenUser,'data',window.location.pathname = `${ROUTE.DASHBOARD}`)
-
                 }
-                return { ...state, isLogin: true, dataUser: action.res.data.data }
+                // return { ...state, isLogin: true, dataUser: action.res.data.data }
             }
             break
         default:

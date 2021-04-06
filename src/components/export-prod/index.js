@@ -3,16 +3,17 @@ import { PlusOutlined } from '@ant-design/icons';
 import SearchOnExport from './search-export';
 import ContentExport from './export-content';
 import StaticExport from './statics';
+import { Button } from 'antd';
 class ExportProduct extends Component {
     render() {
         return (
             <div className='component export-product import-product products'>
                 <div className='outside'>
                     <div className='title'>Danh sách phiếu chuyển kho</div>
-                    <div className='title btn-add'>
+                    <Button className='title btn-add'>
                         <PlusOutlined />
                         <span>Chuyển kho</span>
-                    </div>
+                    </Button>
                 </div>
                 <SearchOnExport/>
                 <ContentExport/>

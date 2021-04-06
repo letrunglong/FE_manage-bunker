@@ -8,11 +8,7 @@ import ProductInfor from './product-infor';
 import { RevenueOfTheDay } from './revenue-in-day';
 import './styles.scss'
 
-class DashBoard extends Component {
-    constructor(props) {
-        super(props);
-    }
-    
+class DashBoard extends Component {   
     renderIMG = () => {
         return "https://instagram.fsgn5-4.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/p640x640/158601647_732931767410536_126768768056918096_n.jpg?tp=1&_nc_ht=instagram.fsgn5-4.fna.fbcdn.net&_nc_cat=104&_nc_ohc=c0kn_efk0oMAX8R02Dr&ccb=7-4&oh=5adf9fb52c32d7ce7b620225c187c02b&oe=607DF3FC&_nc_sid=4f375e"
     }
