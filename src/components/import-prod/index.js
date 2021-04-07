@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { PlusOutlined } from '@ant-design/icons';
+import { PlusOutlined, RollbackOutlined } from '@ant-design/icons';
 import SearchOnImport from './component/search';
 import './styles.scss'
 import ContentImport from './component/content';
 import StaticImport from './component/statics';
 import { Button } from 'antd';
+import AddBillImportComponent from 'components/import-prod/component/add-bills'
 class ImportProduct extends Component {
     constructor(props) {
         super(props);
@@ -19,7 +20,14 @@ class ImportProduct extends Component {
                 <ContentImport />
                 <StaticImport totalBill={0} totalMoney={0} totalDebt={0} />
             </>
-        return null
+        return <AddBillImportComponent />
+    }
+    renderTextButton = () => {
+        if (this.state.isShow)
+            return <><PlusOutlined />
+                <span>Thêm phiếu nhập</span></>
+        return <><RollbackOutlined /><span>Trở về</span></>
+
     }
     render() {
         return (
@@ -27,11 +35,12 @@ class ImportProduct extends Component {
                 <div className='outside'>
                     <div className='title'>Danh sách phiếu nhập</div>
                     <Button className='title btn-add' onClick={() => { this.setState({ isShow: !this.state.isShow }) }}>
-                        <PlusOutlined />
-                        <span>Thêm phiếu nhập</span>
+                        {this.renderTextButton()}
                     </Button>
                 </div>
-                {this.renderComponent()}
+                <div className='content'>
+                    {this.renderComponent()}
+                </div>
 
             </div>
         );

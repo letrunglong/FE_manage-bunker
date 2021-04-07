@@ -74,25 +74,19 @@ const columns = [
                     prod.id = data.prod_id
                     prod.image = data.prod_image
                     deleteProduct(prod)
-                    // console.log(data.prod_id + data.prod_image);
                 }} danger>Xóa</Button>
             </>
         }
     },
 ];
 class ProductsList extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            data: [],
-        }
-    }
     componentWillMount() {
         axios({
             method: "GET",
             url: '/getProducts'
         }).then(res => {
-            this.setState({
+            store.dispatch({
+                type:TYPES.GET_ALL_PRODUCTS,
                 data:res.data
             })
         }
@@ -101,7 +95,7 @@ class ProductsList extends Component {
     render() {
         return (
             <div className='content'>
-                <Table columns={columns} dataSource={this.state.data} />
+                <Table columns={columns} dataSource={this.props.data} />
             </div>
         );
     }
@@ -109,7 +103,7 @@ class ProductsList extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        dataprod: state.getProducts.data
+        data: state.getProducts.data
     }
 }
 export default connect(mapStateToProps)(ProductsList)
