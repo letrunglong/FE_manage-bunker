@@ -53,11 +53,141 @@
                                 .import-content{
                                     margin-top: 30px;
                                 }
+
+                                .add-bill{
+                                    width: 100%;
+                                    display: flex;
+                                    justify-content: space-between;
+                                    .left{
+                                        width: 65%;
+                                        .search{
+                                            .ant-select-selector{
+                                                border-radius: 5px;
+                                            }
+                                        }
+                                        .table-product{
+                                            background-color: white;
+                                            padding: 10px 20px;
+                                            .out-bills{
+                                                display: flex;
+                                                width: 100%;
+                                                justify-content: space-between;
+                                                font-size: 16px;
+                                                font-weight: 400;
+                                                .child-add{
+                                                    width: calc(97%/7);
+                                                }
+                                                .child-add.stt{
+                                                    width: 3%;
+                                                }
+                                            }
+                                            .out-block{
+                                                display: block;
+                                                width: 100%;
+                                                .new-comp{
+                                                    display: flex;
+                                                    width: 100%;
+                                                    margin: 10px 0;
+                                                    justify-content: space-between;
+                                                }
+                                                .element-infor{
+                                                    width: calc(97%/7);
+                                                }
+                                                .element-infor.count{
+                                                   width: 3%;
+                                                }
+                                            }
+                                            
+                                        }
+                                    }
+                                    .right{
+                                        width: 30%;
+                                        background-color: white;
+                                        padding: 20px 20px;
+                                        border-radius: 5px;
+                                        .top{
+                                        }
+                                        .child{
+                                            display: flex;
+                                            justify-content: space-between;
+                                            width: 100%;
+                                            margin: 10px 0;
+                                            .text-title{
+                                                font-size: 16px;
+                                                font-weight: 400;
+                                            }
+                                            .input-title{
+                                                width: 60%;
+                                                .ant-picker{
+                                                    width: 100%;
+                                                }
+                                                .f16{
+                                                    font-size: 16px;
+                                                }
+                                                
+                                            }
+                                        }
+                                        .child.suplier{
+                                            .input-title{
+                                                display: flex;
+                                                .ant-select.ant-select-single.ant-select-show-arrow{
+                                                    width: 80%;
+                                                }
+                                                .button-add{
+                                                    width: 20%;
+                                                    .ant-btn{
+                                                        width: 100%;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        .bottom{
+                                            .infor-title{
+                                                font-size: 20px;
+                                                text-align: left;
+                                                margin: 30px 0;
+                                                border-bottom: 1px solid #2C6DAF;
+                                                padding: 10px 0;
+                                                :first-child{
+                                                    display: flex;
+                                                    color: #2C6DAF;
+                                                    .anticon.anticon-info-circle{
+                                                        margin-right: 5px;
+                                                    }
+                                                    span{
+                                                        line-height: 16px;
+                                                    }
+                                                }
+                                            }
+                                            .btn-save,.ant-btn.ant-btn-primary{
+                                                width: 100%;
+                                                .ant-btn.ant-btn-primary{
+                                                    border-radius: 5px;
+                                                }
+                                            }
+                                        }                                                                    
+                                    }
+                                }
                             }
                         }
                     }
                 }
             }
         }
+    }
+}
+.ant-modal.modal-add-suplier{
+    .ant-col.ant-form-item-label,.ant-col.ant-form-item-control{
+        width: 100%;
+        text-align: left;
+    }
+    .ant-form-item-control-input-content{
+        .ant-btn.ant-btn-primary{
+            width: 100%;
+            border-radius: 5px;
+        }
+    }
+    .ant-modal-footer{
+        display: none;
     }
 }

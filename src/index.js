@@ -7,7 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import store from 'components/redux/store';
 
 ReactDOM.render(
-  <Provider store={store}>
+  <Provider store={store} basename='/login'>
     <App />
   </Provider>
   ,

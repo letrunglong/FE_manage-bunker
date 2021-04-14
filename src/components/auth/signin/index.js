@@ -33,10 +33,16 @@ class AuthLogin extends Component {
                 "Content-Type": "Application/json"
             },
             data: JSON.stringify(obj)
-
         }).then(res => {
+
+            // store.dispatch({ type: TYPES.AUTH_SIGNIN, dataUser: res})
             store.dispatch({ type: TYPES.ALERT_NOTIFIER_ON, messages: res.data.messages })
-            setTimeout(function () { store.dispatch({ type: TYPES.AUTH_SIGNIN, res }) }, 200);
+            console.log(res.data);
+            if (res.data.status === 200) {
+                store.dispatch({ type: TYPES.AUTH_SIGNIN, dataUser: res.data.data[0]})
+            }else{
+                // store.dispatch({ type: TYPES.ALERT_NOTIFIER_ON, messages: res.data.messages })
+            }
 
         }
         ).catch(err => {

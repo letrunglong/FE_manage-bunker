@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Redirect, Route, useHistory } from "react-router-dom";
 import './App.css';
 import AuthLogin from './components/auth/signin';
@@ -62,8 +62,10 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 
 const authLogout = () => {
   localStorage.removeItem('token')
+  localStorage.removeItem('name')
+  localStorage.removeItem('sur')
+  localStorage.removeItem('email')
   window.location.pathname = `${ROUTE.SIGN_IN}`
-
 }
 const menu = (
   <Menu>
@@ -83,8 +85,7 @@ const NavBar = () => {
     </div>
   return null
 }
-function App(props) {
-  console.log(props);
+function App() {
   return (
     <div className="App" >
       <Notificate />
