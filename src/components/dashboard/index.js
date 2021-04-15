@@ -1,3 +1,5 @@
+import axios from 'axios';
+import { TYPES } from 'components/redux/constants';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ActivitiesOfTheDay from './activities';

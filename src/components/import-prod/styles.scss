@@ -92,9 +92,16 @@
                                                 }
                                                 .element-infor{
                                                     width: calc(97%/7);
+                                                    .ant-select.ant-select-single.ant-select-show-arrow{
+                                                        width: 100%;
+                                                    }
                                                 }
                                                 .element-infor.count{
                                                    width: 3%;
+                                                }
+                                                .element-infor.price{
+                                                    font-weight: 500;
+                                                    color: red;
                                                 }
                                             }
                                             
@@ -123,8 +130,8 @@
                                                 }
                                                 .f16{
                                                     font-size: 16px;
+                                                    width: 100%;
                                                 }
-                                                
                                             }
                                         }
                                         .child.suplier{

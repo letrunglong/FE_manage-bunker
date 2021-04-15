@@ -76,7 +76,7 @@ class AddBillImportComponent extends Component {
                         </div>
                         <div className='out-block'>
                             {/* <div className='new-comp'> */}
-                            <AddNewProds />
+                            <AddNewProds allProducts={this.props.allProducts}/>
                             {/* </div> */}
 
                         </div>
@@ -165,4 +165,9 @@ class AddBillImportComponent extends Component {
     }
 }
 
-export default connect()(AddBillImportComponent)
+const mapStateToProps = state => {
+    return {
+        allProducts: state.getProducts.data
+    }
+}
+export default connect(mapStateToProps)(AddBillImportComponent)

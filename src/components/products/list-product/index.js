@@ -83,14 +83,18 @@ class ProductsList extends Component {
     componentWillMount() {
         axios({
             method: "GET",
-            url: '/getProducts'
+            url: '/getProducts',
+            headers: {
+                "Content-type": "Application/json"
+            }
         }).then(res => {
             store.dispatch({
-                type:TYPES.GET_ALL_PRODUCTS,
-                data:res.data
+                type: TYPES.GET_ALL_PRODUCTS,
+                data: res.data
             })
         }
         )
+
     }
     render() {
         return (

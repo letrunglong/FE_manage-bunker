@@ -6,6 +6,7 @@ import getProducts from "./all/getProduct"
 import addProducts from"./all/addProduct"
 import addOnProductsReducers from './all/add-onp-roducts-products'
 import addSuplier from './all/addSuplier'
+import unitReducer from './all/get-unit'
 export default combineReducers({
     loginReducer,
      alertReducer, 
@@ -14,4 +15,5 @@ export default combineReducers({
      addProducts,
      addOnProductsReducers,
      addSuplier,
+     unitReducer,
 })
