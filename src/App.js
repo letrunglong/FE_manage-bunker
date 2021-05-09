@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Redirect, Route, useHistory } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter as Router, Redirect, Route } from "react-router-dom";
 import './App.css';
 import AuthLogin from './components/auth/signin';
 import DashBoard from './components/dashboard';
@@ -64,6 +64,7 @@ const authLogout = () => {
   localStorage.removeItem('token')
   localStorage.removeItem('name')
   localStorage.removeItem('sur')
+  localStorage.removeItem('status')
   localStorage.removeItem('email')
   window.location.pathname = `${ROUTE.SIGN_IN}`
 }
@@ -77,8 +78,8 @@ const menu = (
 const NavBar = () => {
   if (localStorage.getItem('token'))
     return <div className='nav-bar'>
-      <span style={{color:'white',fontSize:'18px',marginRight:5}}> Hi {localStorage.getItem('name')} </span>
-      <span style={{color:'white',fontSize:'18px',marginRight:5}}> {localStorage.getItem('sur')}</span>
+      <span style={{ color: 'white', fontSize: '18px', marginRight: 5 }}> Hi {localStorage.getItem('name')} </span>
+      <span style={{ color: 'white', fontSize: '18px', marginRight: 5 }}> {localStorage.getItem('sur')}</span>
       <Dropdown overlay={menu}>
         <Button><UserOutlined /></Button>
       </Dropdown>
@@ -86,16 +87,12 @@ const NavBar = () => {
   return null
 }
 function App() {
-  return (
-    <div className="App" >
-      <Notificate />
-      <NavBar />
-      <Router>
-        <Route render={({ location, history }) => (
-          <React.Fragment>
-            <PublicRoute exact path={ROUTE.SIGN_IN} component={AuthLogin} />
-            <PublicRoute exact path={ROUTE.SIGN_UP} component={SignUpPage} />
-            {/* <PublicRoute exact path={ROUTE.FORGOT} component={Authforgot} /> */}
+  const renderBaseComponent = () => {
+    if (localStorage.getItem('status')) {
+      // console.log(localStorage.getItem('status'));
+      switch (localStorage.getItem('status')) {
+        case '1':
+          return <>
             <PrivateRoute exact path={ROUTE.DASHBOARD} component={DashBoard} />
             <PrivateRoute exact path={ROUTE.CART} component={CartComponent} />
             <PrivateRoute exact path={ROUTE.PRODUCT} component={ProductComponent} />
@@ -103,6 +100,46 @@ function App() {
             <PrivateRoute exact path={ROUTE.IMPORT_PRODUCTS} component={ImportProduct} />
             <PrivateRoute exact path={ROUTE.EXPORT_PRODUCTS} component={ExportProduct} />
             <PrivateRoute exact path={ROUTE.REVENUE} component={RevenueComponent} />
+          </>
+        case '2':
+          return <>
+            {/* <PrivateRoute exact path={ROUTE.DASHBOARD} component={DashBoard} /> */}
+            <PrivateRoute exact path={ROUTE.CART} component={CartComponent} />
+            {/* <PrivateRoute exact path={ROUTE.PRODUCT} component={ProductComponent} /> */}
+            {/* <PrivateRoute exact path={ROUTE.CUSTOMER} component={CustomersComponent} /> */}
+            <PrivateRoute exact path={ROUTE.IMPORT_PRODUCTS} component={ImportProduct} />
+            <PrivateRoute exact path={ROUTE.EXPORT_PRODUCTS} component={ExportProduct} />
+            {/* <PrivateRoute exact path={ROUTE.REVENUE} component={RevenueComponent} /> */}
+          </>
+        case '3':
+          return <>
+            <PrivateRoute exact path={ROUTE.CART} component={CartComponent} />
+          </>
+
+        default:
+          break;
+      }
+    }
+  }
+  return (
+    <div className="App" >
+      <Notificate />
+      <NavBar />
+      <Router>
+        <Route render={({ location, history }) => (
+          <React.Fragment>
+
+            <PublicRoute exact path={ROUTE.SIGN_IN} component={AuthLogin} />
+            <PublicRoute exact path={ROUTE.SIGN_UP} component={SignUpPage} />
+            {/* <PublicRoute exact path={ROUTE.FORGOT} component={Authforgot} /> */}
+            {/* <PrivateRoute exact path={ROUTE.DASHBOARD} component={DashBoard} />
+            <PrivateRoute exact path={ROUTE.CART} component={CartComponent} />
+            <PrivateRoute exact path={ROUTE.PRODUCT} component={ProductComponent} />
+            <PrivateRoute exact path={ROUTE.CUSTOMER} component={CustomersComponent} />
+            <PrivateRoute exact path={ROUTE.IMPORT_PRODUCTS} component={ImportProduct} />
+            <PrivateRoute exact path={ROUTE.EXPORT_PRODUCTS} component={ExportProduct} />
+            <PrivateRoute exact path={ROUTE.REVENUE} component={RevenueComponent} /> */}
+            {renderBaseComponent()}
           </React.Fragment>
         )}
         />

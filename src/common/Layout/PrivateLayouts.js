@@ -12,7 +12,6 @@ import ImportProduct from "components/import-prod";
 import ExportProduct from "components/export-prod";
 import { ROUTE } from "common/constants";
 import RevenueComponent from "components/renueve";
-// const background = "https://instagram.fsgn5-7.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/p640x640/158082325_236069748210003_7203886424600269919_n.jpg?tp=1&_nc_ht=instagram.fsgn5-7.fna.fbcdn.net&_nc_cat=103&_nc_ohc=15mIMqrqVLAAX-7FtXM&ccb=7-4&oh=f8956b012b89fb902f959aa436ff3905&oe=607EEDFF&_nc_sid=4f375e"
 const background = "https://drscdn.500px.org/photo/1029586436/q%3D80_m%3D2000/v2?sig=39c2b83ba428b495155b1c1d456bdaafb29e6f80630e498eeeedfa39168494e7"
 var sectionStyle = {
   width: "100%",
@@ -25,7 +24,92 @@ var sectionStyle = {
 
 
 const PrivateLayout = () => {
-  let history = useHistory();
+  const history = useHistory();
+  const permission = parseInt(localStorage.getItem('status'))
+  const checkPermission = () => {
+    if (permission) {
+      switch (permission) {
+        case 1:
+          return <SideNav.Nav defaultSelected="dashboard">
+            <NavItem eventKey="dashboard">
+              <NavIcon>
+                <DashboardOutlined />
+                <p>Dashboard</p>
+              </NavIcon>
+            </NavItem>
+            <NavItem eventKey="cart">
+              <NavIcon>
+                <ShoppingCartOutlined />
+                <p>Cart</p>
+              </NavIcon>
+            </NavItem>
+            <NavItem eventKey="products">
+              <NavIcon>
+                <DatabaseOutlined />
+                <p>Products</p>
+              </NavIcon>
+            </NavItem>
+            <NavItem eventKey="customers">
+              <NavIcon>
+                <UserOutlined />
+                <p>Customer</p>
+              </NavIcon>
+            </NavItem>
+            <NavItem eventKey="import-products">
+              <NavIcon>
+                <ShrinkOutlined />
+                <p>Products import</p>
+              </NavIcon>
+            </NavItem>
+            <NavItem eventKey="export-products">
+              <NavIcon>
+                <ArrowsAltOutlined />
+                <p>Products export</p>
+              </NavIcon>
+            </NavItem>
+            <NavItem eventKey="revenue">
+              <NavIcon>
+                <RiseOutlined />
+                <p>Revenue</p>
+              </NavIcon>
+            </NavItem>
+          </SideNav.Nav>
+        case 2:
+          return <SideNav.Nav defaultSelected="cart">
+            <NavItem eventKey="cart">
+              <NavIcon>
+                <ShoppingCartOutlined />
+                <p>Cart</p>
+              </NavIcon>
+            </NavItem>
+
+            <NavItem eventKey="import-products">
+              <NavIcon>
+                <ShrinkOutlined />
+                <p>Products import</p>
+              </NavIcon>
+            </NavItem>
+            <NavItem eventKey="export-products">
+              <NavIcon>
+                <ArrowsAltOutlined />
+                <p>Products export</p>
+              </NavIcon>
+            </NavItem>
+          </SideNav.Nav>
+        case 3:
+          return <SideNav.Nav defaultSelected="cart">
+            <NavItem eventKey="cart">
+              <NavIcon>
+                <ShoppingCartOutlined />
+                <p>Cart</p>
+              </NavIcon>
+            </NavItem>
+          </SideNav.Nav>
+        default:
+          break;
+      }
+    }
+  }
   return (
     <>
       <div className="top-bar">
@@ -39,50 +123,7 @@ const PrivateLayout = () => {
             }}
           >
             <SideNav.Toggle />
-            <SideNav.Nav defaultSelected="dashboard">
-              <NavItem eventKey="dashboard">
-                <NavIcon>
-                  <DashboardOutlined />
-                  <p>Dashboard</p>
-                </NavIcon>
-              </NavItem>
-              <NavItem eventKey="cart">
-                <NavIcon>
-                  <ShoppingCartOutlined />
-                  <p>Cart</p>
-                </NavIcon>
-              </NavItem>
-              <NavItem eventKey="products">
-                <NavIcon>
-                  <DatabaseOutlined />
-                  <p>Products</p>
-                </NavIcon>
-              </NavItem>
-              <NavItem eventKey="customers">
-                <NavIcon>
-                  <UserOutlined />
-                  <p>Customer</p>
-                </NavIcon>
-              </NavItem>
-              <NavItem eventKey="import-products">
-                <NavIcon>
-                  <ShrinkOutlined />
-                  <p>Products import</p>
-                </NavIcon>
-              </NavItem>
-              <NavItem eventKey="export-products">
-                <NavIcon>
-                  <ArrowsAltOutlined />
-                  <p>Products export</p>
-                </NavIcon>
-              </NavItem>
-              <NavItem eventKey="revenue">
-                <NavIcon>
-                  <RiseOutlined />
-                  <p>Revenue</p>
-                </NavIcon>
-              </NavItem>
-            </SideNav.Nav>
+            {checkPermission()}
           </SideNav>
           <main className='main' >
             <Layout className="private-layout-container">

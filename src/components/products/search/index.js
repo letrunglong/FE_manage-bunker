@@ -1,13 +1,28 @@
 import React, { Component } from 'react';
 import { Menu, Dropdown, Button, Space, Input } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
+import axios from 'axios';
 import store from 'components/redux/store';
 import { TYPES } from 'components/redux/constants';
 
 const getProductsByCate = (val) => {
-    store.dispatch({
-        type:TYPES.GET_PRODUCTS_BY_CATE,
-        val
+    axios({
+        method:"POST",
+        url:'/get-products-by-cate/'+ val ,
+    }).then( res=>{
+        store.dispatch({
+            type:TYPES.GET_ALL_PRODUCTS,data:res.data
+        })
+    })
+}
+const getProductsByProducer = (val) => {
+    axios({
+        method:"POST",
+        url:'/get-products-by-producer/'+ val ,
+    }).then( res=>{
+        store.dispatch({
+            type:TYPES.GET_ALL_PRODUCTS,data:res.data
+        })
     })
 }
 const menuCate = (props) => {
@@ -24,14 +39,15 @@ const menuCate = (props) => {
 }
 
 
-const menuBunker = (props) => {
-    const renderBunker = () => {
+const menuProducer = (props) => {
+    const renderProducer = () => {
         return props.producerData.map((val, index) => {
-            return <Menu.Item><a key={val.producer_id}>{val.producer_name}</a></Menu.Item>
+            const value = val.producer_id
+            return <Menu.Item onClick={()=>getProductsByProducer(value)}><a key={val.producer_id}>{val.producer_name}</a></Menu.Item>
         })
     }
     return <Menu>
-        {renderBunker()}
+        {renderProducer()}
     </Menu>
 }
 
@@ -52,7 +68,7 @@ class SearchOnProduct extends Component {
             case "Nhà sản xuất":
                 <Space direction="vertical">
                     <Space wrap>
-                        <Dropdown overlay={menuBunker(this.props)} placement="bottomLeft">
+                        <Dropdown overlay={menuProducer(this.props)} placement="bottomLeft">
                             <Button>{cate}</Button>
                         </Dropdown>
                     </Space>
@@ -84,7 +100,7 @@ class SearchOnProduct extends Component {
                 <div className='search-by-owner child'>
                     <Space direction="vertical">
                         <Space wrap>
-                            <Dropdown overlay={menuBunker(this.props)} placement="bottomLeft">
+                            <Dropdown overlay={menuProducer(this.props)} placement="bottomLeft">
                                 <Button>Nhà sản xuất</Button>
                             </Dropdown>
                         </Space>

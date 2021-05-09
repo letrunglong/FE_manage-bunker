@@ -12,7 +12,7 @@ import './styles.scss'
 
 class DashBoard extends Component {   
     renderIMG = () => {
-        return "https://instagram.fsgn5-4.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/p640x640/158601647_732931767410536_126768768056918096_n.jpg?tp=1&_nc_ht=instagram.fsgn5-4.fna.fbcdn.net&_nc_cat=104&_nc_ohc=c0kn_efk0oMAX8R02Dr&ccb=7-4&oh=5adf9fb52c32d7ce7b620225c187c02b&oe=607DF3FC&_nc_sid=4f375e"
+        return "https://drscdn.500px.org/photo/1031604824/q%3D80_m%3D2000/v2?sig=865e457a04ba93c4862697d0ae75194acab490e40243dfff672b3ee9f008fcf0"
     }
     render() {
         return (

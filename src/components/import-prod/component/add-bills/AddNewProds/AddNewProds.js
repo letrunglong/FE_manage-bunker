@@ -33,6 +33,7 @@ class AddComponent extends Component {
         this.setState({
             [name]:value
         })
+
     }
     setPriceProduct = () => {
         let quantity = this.state.quantity
@@ -50,7 +51,10 @@ class AddComponent extends Component {
         })
     }
     render() {
-        console.log(this.state);
+        store.dispatch({
+            type:TYPES.SET_DATA_BILLS_IMPORT,
+            billData:this.state
+        })
         return (
             <div className='new-comp'>
                 <div className='count element-infor'><span>{this.props.count}</span></div>
@@ -104,7 +108,7 @@ class AddNewProds extends Component {
             count: this.state.count + 1,
             children: [
                 ...this.state.children,
-                <AddComponent count={this.state.count} allProducts={this.props.allProducts} allunit={this.props.allunit}/>
+                <AddComponent count={this.state.count} allProducts={this.props.allProducts} allunit={this.props.allunit} arr={[]}/>
             ],
         })
     }
