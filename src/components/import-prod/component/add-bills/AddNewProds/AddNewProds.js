@@ -31,29 +31,31 @@ class AddComponent extends Component {
         const name = event.target.name
         const value = event.target.value
         this.setState({
-            [name]:value
+            [name]: value
         })
 
     }
     setPriceProduct = () => {
         let quantity = this.state.quantity
         let price = this.state.price
-        let priceOne = quantity*price
+        let priceOne = quantity * price
         var formatter = new Intl.NumberFormat('en-US', {
             style: 'currency',
             currency: 'USD',
-          })
-        return formatter.format(priceOne)
+        })
+        if (quantity && price)
+            return formatter.format(priceOne)
+        return 0
     }
     renderUnit = () => {
-        return this.props.allunit.map((val,key)=>{
+        return this.props.allunit.map((val, key) => {
             return <Option value={val.unit_id}>{val.unit_name}</Option>
         })
     }
     render() {
         store.dispatch({
-            type:TYPES.SET_DATA_BILLS_IMPORT,
-            billData:this.state
+            type: TYPES.SET_DATA_BILLS_IMPORT,
+            billData: this.state
         })
         return (
             <div className='new-comp'>
@@ -77,19 +79,19 @@ class AddComponent extends Component {
                     {this.renderImage()}
 
                 </div>
-                <div className='quantity element-infor'><Input type="number" name='quantity' onChange={(event)=>this.isChange(event)}/></div>
+                <div className='quantity element-infor'><Input type="number" name='quantity' onChange={(event) => this.isChange(event)} /></div>
                 <div className='unit element-infor'><Select
-                        onChange={
-                            value => {
-                                this.setState({
-                                    unit: value,
-                                })
-                            }
+                    onChange={
+                        value => {
+                            this.setState({
+                                unit: value,
+                            })
                         }
-                    >
-                        {this.renderUnit()}
-                    </Select></div>
-                <div className='price-import element-infor'><Input type="number" name='price' onChange={(event)=>this.isChange(event)}/></div>
+                    }
+                >
+                    {this.renderUnit()}
+                </Select></div>
+                <div className='price-import element-infor'><Input type="number" name='price' onChange={(event) => this.isChange(event)} /></div>
                 <div className='price element-infor'><span >{this.setPriceProduct()}</span></div>
             </div>
         )
@@ -108,7 +110,7 @@ class AddNewProds extends Component {
             count: this.state.count + 1,
             children: [
                 ...this.state.children,
-                <AddComponent count={this.state.count} allProducts={this.props.allProducts} allunit={this.props.allunit} arr={[]}/>
+                <AddComponent count={this.state.count} allProducts={this.props.allProducts} allunit={this.props.allunit} arr={[]} />
             ],
         })
     }
@@ -154,7 +156,8 @@ class AddNewProds extends Component {
 const mapStateToProps = state => {
     return {
         allproducts: state.getProducts.data,
-        allunit: state.unitReducer
+        allunit: state.unitReducer,
+        productsImport:state.setBillData.data
     }
 }
 export default connect(mapStateToProps)(AddNewProds);

@@ -33,11 +33,10 @@ class AuthLogin extends Component {
                 "Content-Type": "Application/json"
             },
             data: JSON.stringify(obj)
-        }).then(res => {
+        }).then( async res => {
 
             // store.dispatch({ type: TYPES.AUTH_SIGNIN, dataUser: res})
-            store.dispatch({ type: TYPES.ALERT_NOTIFIER_ON, messages: res.data.messages })
-            console.log(res.data);
+            await store.dispatch({ type: TYPES.ALERT_NOTIFIER_ON, messages: res.data.messages })
             if (res.data.status === 200) {
                 store.dispatch({ type: TYPES.AUTH_SIGNIN, dataUser: res.data.data[0]})
             }else{

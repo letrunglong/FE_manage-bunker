@@ -65,6 +65,7 @@ const authLogout = () => {
   localStorage.removeItem('name')
   localStorage.removeItem('sur')
   localStorage.removeItem('status')
+  localStorage.removeItem('id')
   localStorage.removeItem('email')
   window.location.pathname = `${ROUTE.SIGN_IN}`
 }
@@ -87,40 +88,6 @@ const NavBar = () => {
   return null
 }
 function App() {
-  const renderBaseComponent = () => {
-    if (localStorage.getItem('status')) {
-      // console.log(localStorage.getItem('status'));
-      switch (localStorage.getItem('status')) {
-        case '1':
-          return <>
-            <PrivateRoute exact path={ROUTE.DASHBOARD} component={DashBoard} />
-            <PrivateRoute exact path={ROUTE.CART} component={CartComponent} />
-            <PrivateRoute exact path={ROUTE.PRODUCT} component={ProductComponent} />
-            <PrivateRoute exact path={ROUTE.CUSTOMER} component={CustomersComponent} />
-            <PrivateRoute exact path={ROUTE.IMPORT_PRODUCTS} component={ImportProduct} />
-            <PrivateRoute exact path={ROUTE.EXPORT_PRODUCTS} component={ExportProduct} />
-            <PrivateRoute exact path={ROUTE.REVENUE} component={RevenueComponent} />
-          </>
-        case '2':
-          return <>
-            {/* <PrivateRoute exact path={ROUTE.DASHBOARD} component={DashBoard} /> */}
-            <PrivateRoute exact path={ROUTE.CART} component={CartComponent} />
-            {/* <PrivateRoute exact path={ROUTE.PRODUCT} component={ProductComponent} /> */}
-            {/* <PrivateRoute exact path={ROUTE.CUSTOMER} component={CustomersComponent} /> */}
-            <PrivateRoute exact path={ROUTE.IMPORT_PRODUCTS} component={ImportProduct} />
-            <PrivateRoute exact path={ROUTE.EXPORT_PRODUCTS} component={ExportProduct} />
-            {/* <PrivateRoute exact path={ROUTE.REVENUE} component={RevenueComponent} /> */}
-          </>
-        case '3':
-          return <>
-            <PrivateRoute exact path={ROUTE.CART} component={CartComponent} />
-          </>
-
-        default:
-          break;
-      }
-    }
-  }
   return (
     <div className="App" >
       <Notificate />
@@ -132,14 +99,13 @@ function App() {
             <PublicRoute exact path={ROUTE.SIGN_IN} component={AuthLogin} />
             <PublicRoute exact path={ROUTE.SIGN_UP} component={SignUpPage} />
             {/* <PublicRoute exact path={ROUTE.FORGOT} component={Authforgot} /> */}
-            {/* <PrivateRoute exact path={ROUTE.DASHBOARD} component={DashBoard} />
+            <PrivateRoute exact path={ROUTE.DASHBOARD} component={DashBoard} />
             <PrivateRoute exact path={ROUTE.CART} component={CartComponent} />
             <PrivateRoute exact path={ROUTE.PRODUCT} component={ProductComponent} />
             <PrivateRoute exact path={ROUTE.CUSTOMER} component={CustomersComponent} />
             <PrivateRoute exact path={ROUTE.IMPORT_PRODUCTS} component={ImportProduct} />
             <PrivateRoute exact path={ROUTE.EXPORT_PRODUCTS} component={ExportProduct} />
-            <PrivateRoute exact path={ROUTE.REVENUE} component={RevenueComponent} /> */}
-            {renderBaseComponent()}
+            <PrivateRoute exact path={ROUTE.REVENUE} component={RevenueComponent} />
           </React.Fragment>
         )}
         />

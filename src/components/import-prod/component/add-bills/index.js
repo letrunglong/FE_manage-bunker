@@ -16,7 +16,8 @@ class AddBillImportComponent extends Component {
         super(props);
         this.state = {
             isModalShow: false,
-            suplier: []
+            suplier: [],
+            bunker: [],
         }
     }
     showModalSuplier = () => {
@@ -47,11 +48,99 @@ class AddBillImportComponent extends Component {
                 suplier: res.data
             })
         })
+        axios({
+            url: '/get-bunker',
+            method: 'GET'
+        }).then(res => {
+            this.setState({
+                bunker: res.data
+            })
+        })
     }
     renderSuplier = () => {
         return this.state.suplier.map((val, key) => {
             return <Option key={val.suplier_id}>{val.suplier_name}</Option>
         })
+    }
+    renderBunker = () => {
+        return this.state.bunker.map((val, key) => {
+            return <Option key={val.bunker_id}>{val.bunker_name}</Option>
+        })
+    }
+    onChangeDate = (date, dateString) => {
+        this.setState({
+            date: dateString
+        })
+    }
+    AddBillsImport = () => {
+        let prod_id = this.props.productsImport.codeProd
+        let quantity = parseInt(this.props.productsImport.quantity)
+        let price = parseInt(this.props.productsImport.price)
+        let { suplier_id } = this.state
+        let tax = parseInt(this.state.tax)
+        let mail = localStorage.getItem('email')
+        let user_id = localStorage.getItem('id')
+        let { date } = this.state
+        let { bunker_id} = this.state
+        let total = (price * quantity)
+        let totalMoney = total + total * tax / 100
+
+        // console.log(prod_id);
+        // console.log(quantity);
+        // console.log(price);
+        // console.log(suplier_id);
+        // console.log(tax);
+        // console.log(mail);
+        // console.log(date);
+        // console.log(totalMoney);
+        // console.log(bunker_id);
+        // console.log(user_id);
+        let obj = {}
+        obj.prod_id= prod_id
+        obj.quantity= quantity
+        obj.price= price
+        obj.suplier_id= suplier_id
+        obj.user_id= parseInt(user_id)
+        obj.date= date
+        obj.totalMoney= totalMoney
+        obj.bunker_id= bunker_id
+        axios({
+            url:"/add-bills-import-products",
+            method:"POST",
+            headers:{
+                "Content-type":"Application/json"
+            },
+            data:obj
+        }).then( async res=>{
+            await store.dispatch({
+                type:TYPES.ALERT_NOTIFIER_ON,messages:res.data.messages
+            })
+        })
+    }
+    renderMoney = () => {
+        let price = parseInt(this.props.productsImport.price)
+        let quantity = parseInt(this.props.productsImport.quantity)
+        var formatter = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+        })
+        if (quantity && price)
+            return formatter.format(quantity * price)
+        return 0
+    }
+    renderTotal() {
+        let price = parseInt(this.props.productsImport.price)
+        let quantity = parseInt(this.props.productsImport.quantity)
+        let tax = parseInt(this.state.tax)
+        let total = price * quantity
+        let totalMoney = total + total * tax / 100
+        var formatter = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+        })
+        if (total && tax)
+            return formatter.format(totalMoney)
+        return 0
     }
     render() {
         return (
@@ -76,7 +165,7 @@ class AddBillImportComponent extends Component {
                         </div>
                         <div className='out-block'>
                             {/* <div className='new-comp'> */}
-                            <AddNewProds allProducts={this.props.allProducts}/>
+                            <AddNewProds allProducts={this.props.allProducts} />
                             {/* </div> */}
 
                         </div>
@@ -88,7 +177,7 @@ class AddBillImportComponent extends Component {
                         <div className='child suplier'>
                             <div className='text-title'>Nhà cung cấp</div>
                             <div className='input-title'>
-                                <Select>
+                                <Select onChange={(value) => { this.setState({ suplier_id: parseInt(value) }) }}>
                                     {this.renderSuplier()}
                                 </Select>
                                 <span className='button-add'><Button type="primary" onClick={() => this.showModalSuplier()}>+</Button></span>
@@ -112,10 +201,18 @@ class AddBillImportComponent extends Component {
                                 </div>
                             </div>
                         </div>
+                        <div className="child suplier">
+                            <div className='text-title'>Kho hàng</div>
+                            <div className='input-title'>
+                                <Select onChange={(value) => { this.setState({ bunker_id: value }) }}>
+                                    {this.renderBunker()}
+                                </Select>
+                            </div>
+                        </div>
                         <div className='child date'>
                             <div className='text-title'>Ngày nhập</div>
                             <div className='input-title'>
-                                <DatePicker />
+                                <DatePicker onChange={this.onChangeDate} />
                             </div>
                         </div>
                         <div className='child owner'>
@@ -139,24 +236,27 @@ class AddBillImportComponent extends Component {
                             <div className='child details'>
                                 <div className='text-title'>Tiền hàng</div>
                                 <div className='input-title'>
-                                    <span className='price f16'>1,000,000</span>
+                                    <span className='price f16'>{this.renderMoney()}</span>
                                 </div>
                             </div>
                             <div className='child details'>
                                 <div className='text-title'>Chiết khấu</div>
                                 <div className='input-title'>
-                                    <div className='tax'><Input type="number" placeholder='?%' /></div>
+                                    <div className='tax'><Input type="number" name="tax" placeholder='?%' onChange={(event) => this.isChange(event)} /></div>
                                 </div>
                             </div>
                             <div className='child details'>
                                 <div className='text-title'>Tổng tiền</div>
                                 <div className='input-title'>
-                                    <span className='total f16'>1,000,000</span>
+                                    <span className='total f16'>{this.renderTotal()}</span>
                                 </div>
                             </div>
                         </div>
                         <div className='btn-save'>
-                            <Button type="primary">Lưu</Button>
+                            <Button
+                                onClick={() => {
+                                    this.AddBillsImport()
+                                }} type="primary">Lưu</Button>
                         </div>
                     </div>
                 </div>
@@ -167,7 +267,8 @@ class AddBillImportComponent extends Component {
 
 const mapStateToProps = state => {
     return {
-        allProducts: state.getProducts.data
+        allProducts: state.getProducts.data,
+        productsImport: state.setBillData.data
     }
 }
 export default connect(mapStateToProps)(AddBillImportComponent)

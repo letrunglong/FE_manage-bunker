@@ -15,7 +15,7 @@ class AddNewproducts extends Component {
         }
     }
     onFinish = () => {
-        let { product_name, product_bunker, product_cate, product_price, product_producer, product_quantity, product_unit, product_sell,product_description } = this.state
+        let { product_name, product_bunker, product_cate, product_price, product_producer, product_unit, product_sell,product_description } = this.state
         const fd = new FormData()
         fd.append('image', this.state.product_image, this.state.product_image.name)
         fd.append('product_name', product_name)
@@ -23,7 +23,6 @@ class AddNewproducts extends Component {
         fd.append('product_cate', product_cate)
         fd.append('product_price', product_price)
         fd.append('product_producer', product_producer)
-        fd.append('product_quantity', product_quantity)
         fd.append('product_unit', product_unit)
         fd.append('product_sell', product_sell)
         fd.append('product_description', product_description)
@@ -110,7 +109,7 @@ class AddNewproducts extends Component {
                                 <Form.Item
                                     label="Product quantity"
                                     name="product-quantity"
-                                    rules={[{ required: true, message: 'Vui lòng nhập số lượng sản phẩm' }]}
+                                    rules={[{ required: false, message: 'Vui lòng nhập số lượng sản phẩm' }]}
                                 >
                                     <Input name="product_quantity" placeholder="Số lượng" onChange={(event) => this.isChange(event)} />
                                 </Form.Item>

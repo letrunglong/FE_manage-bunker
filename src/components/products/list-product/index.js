@@ -23,11 +23,6 @@ const columns = [
         key: 'prod_id',
     },
     {
-        title: 'SL',
-        dataIndex: 'prod_quantity',
-        key: 'prod_quantity',
-    },
-    {
         title: 'Giá nhập',
         key: 'prod_price',
         dataIndex: 'prod_price',
@@ -99,7 +94,9 @@ class ProductsList extends Component {
     render() {
         return (
             <div className='content'>
-                <Table columns={columns} dataSource={this.props.data} />
+                <Table columns={columns} 
+                dataSource={this.props.data}
+                 />
             </div>
         );
     }
